@@ -1,8 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const dynamicAPI = require('./dynamic-api')
+const apiCneter = require('./api-center')
 const { server: configServer } = require('../config')
-const { GetResponseData } = require('./base')
+const { GetResponseData, CONST_NUM } = require('./base')
 
 const app = express()
 app.use('/public', express.static('public'))
@@ -10,17 +10,25 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  console.log('gate way: next')
   next()
 })
 
+// 基础测试路由
 app.get('/', function (req, res) {
   res.send(GetResponseData())
+}).post('/', function (req, res) {
+  res.send(GetResponseData())
 })
-app.post('/', function (req, res) {
-  res.send('12312')
+
+// 自定义路由
+apiCneter.init(app)
+
+// 最后定义通配路由404
+app.get('*', function (req, res) {
+  res.send(GetResponseData(CONST_NUM.ERROR404))
+}).post('*', function (req, res) {
+  res.send(GetResponseData(CONST_NUM.ERROR404))
 })
-dynamicAPI.init(app)
 
 const server = app.listen(configServer.port, function () {
   const object = server.address()
