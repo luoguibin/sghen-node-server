@@ -26,8 +26,10 @@ request.post({
     id: 1589419765292071,
     name: '查询最新的10条用户数据',
     comment: '无条件查询',
-    content: 'SELECT * FROM user LIMIT 10',
-    status: 2,
+    content: `SELECT COUNT(id) AS total FROM user
+      $$$
+      SELECT id, user_name AS userName, avatar FROM user LIMIT \${limit} OFFSET \${offset}`,
+    status: 1,
     userId: 16405,
     suffixPath: 'v1/user/list'
   }
