@@ -11,6 +11,9 @@ const config = {
   },
   server: {
     port: 8087
+  },
+  auth: {
+    expDuration: 7 * 24 * 60 * 60
   }
 }
 

@@ -9,7 +9,7 @@ const outputFunc = function (error, response, body) {
 }
 
 request.post({
-  url: 'http://localhost:8087/api-center/update',
+  url: 'http://localhost:8087/auth/api-center/update',
   form: {
     id: 3,
     name: '查询最新的10条API数据',
@@ -26,7 +26,7 @@ request.post({
 //   { key: 'list', sql: 'SELECT id, user_name AS userName, avatar FROM user LIMIT ${limit} OFFSET ${offset}' }
 // ])
 // request.post({
-//   url: 'http://localhost:8087/api-center/update',
+//   url: 'http://localhost:8087/auth/api-center/update',
 //   form: {
 //     id: 1,
 //     name: '查询最新的10条用户数据',

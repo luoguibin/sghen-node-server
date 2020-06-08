@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const apiCneter = require('./api-center')
 const { server: configServer } = require('../config')
+const auth = require('../core/auth')
 const { GetResponseData, CONST_NUM } = require('./base')
 const task = require('./task')
 
@@ -11,7 +12,24 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next()
+
+  // 接口鉴权
+  if (req.method === 'POST' && req.path.includes('auth')) {
+    const token = req.header.Authorization
+    if (!token) {
+      res.send(GetResponseData(CONST_NUM.ERROR_TOKEN))
+      return
+    }
+    auth.verify(token, data => {
+      if (!data) {
+        res.send(GetResponseData(CONST_NUM.ERROR_TOKEN))
+        return
+      }
+      next()
+    })
+  } else {
+    next()
+  }
 })
 
 // 基础测试路由
