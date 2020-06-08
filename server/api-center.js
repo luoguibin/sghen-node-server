@@ -11,6 +11,39 @@ const API_STATUS = {
   CACHED: 2
 }
 
+const validatorMap = {
+  id: function (v) {
+    if (!v) {
+      return false
+    }
+    return /^[0-9A-Za-z]+$/.test(v)
+  },
+  offset: function (v) {
+    if (!v) {
+      return false
+    }
+    return /^[0-9]+$/.test(v)
+  },
+  limit: function (v) {
+    if (!v) {
+      return false
+    }
+    return /^[0-9]+$/.test(v)
+  }
+}
+
+const formatQuery = function (query) {
+  if (!query) {
+    return
+  }
+  if (query.offset) {
+    query.offset = parseInt(query.offset)
+  }
+  if (query.limit) {
+    query.limit = parseInt(query.limit)
+  }
+}
+
 const initAPICenter = function () {
   // 加载数据
   API.queryAPIS(100, 0).then(({ list }) => {
@@ -50,7 +83,7 @@ const getAPI = function (id) {
  */
 const init = function (app) {
   // API列表查询
-  app.get('/api-center/list', function (req, res) {
+  app.get('/open/api-center/list', function (req, res) {
     const limit = parseInt(req.query.limit || '10')
     const offset = parseInt(req.query.offset || '0')
     if (limit < 1 || offset < 0) {
@@ -64,7 +97,7 @@ const init = function (app) {
     })
   })
   // API创建
-  app.post('/api-center/create', function (req, res) {
+  app.post('/auth/api-center/create', function (req, res) {
     const api = new DynamicAPI()
     api.setValues(req.body)
     if (!api.validate()) {
@@ -80,6 +113,7 @@ const init = function (app) {
     api.timeUpdate = api.timeCreate
     API.createAPI(api).then(insertId => {
       api.id = insertId
+      api.build()
       API_CENTER[api.suffixPath] = api
       res.send(GetResponseData(api))
     }).catch(() => {
@@ -87,7 +121,7 @@ const init = function (app) {
     })
   })
   // API更新
-  app.post('/api-center/update', function (req, res) {
+  app.post('/auth/api-center/update', function (req, res) {
     const tempApi = new DynamicAPI()
     tempApi.setValues(req.body)
     if (!tempApi.validate()) {
@@ -125,7 +159,7 @@ const init = function (app) {
     })
   })
   // API删除
-  app.post('/api-center/delete', function (req, res) {
+  app.post('/auth/api-center/delete', function (req, res) {
     const id = parseInt(req.body.id || 0)
     if (!id) {
       res.send(GetResponseData(CONST_NUM.API_PARAMS_ERROR))
@@ -161,27 +195,62 @@ const init = function (app) {
       res.send(data)
       return
     }
+
+    // 检测参数
+    const errors = []
+    const query = req.query
+    const sqlEntities = api.sqlEntities
+    sqlEntities.forEach(o => {
+      o.orderKeys.forEach(key => {
+        if (validatorMap[key] && !validatorMap[key](query[key])) {
+          errors.push({ key, value: query[key] })
+        }
+      })
+    })
+    if (errors.length > 0) {
+      const data = GetResponseData(CONST_NUM.ERROR)
+      data.errors = errors
+      res.send()
+      return
+    }
+
+    // 构建参数列表
+    formatQuery(query)
+    const queryParams = sqlEntities.map(o => {
+      return o.orderKeys.map(key => {
+        return query[key]
+      })
+    })
+
     // console.log(api)
-    API.execGetAPI(api, req.query).then(data => {
+    API.execGetAPI(api.sqlEntities, queryParams).then(data => {
       // 设置缓存
-      if (api.status === API_STATUS.CACHED && !API_CACHE[api.id]) {
+      if (api.status === API_STATUS.CACHED) {
         API_CACHE[api.id] = data
       }
+      api.count += 1
       res.send(GetResponseData(data))
     }).catch(err => {
       const data = GetResponseData(CONST_NUM.ERROR)
       data.error = err
       res.send(data)
     })
-  }).post('/dynamic-api/post/:suffixPath(*)', function (req, res) {
+  }).post('/auth/dynamic-api/post/:suffixPath(*)', function (req, res) {
     res.send(GetResponseData(CONST_NUM.API_NOT_LOADED))
   })
 
   initAPICenter()
 }
 
+const updateAPIs = function () {
+  for (const key in API_CENTER) {
+    API.updateAPI(API_CENTER[key], true)
+  }
+}
+
 const apiCneter = {
-  init
+  init,
+  updateAPIs
 }
 
 module.exports = apiCneter

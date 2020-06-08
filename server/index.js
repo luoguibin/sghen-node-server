@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const apiCneter = require('./api-center')
 const { server: configServer } = require('../config')
 const { GetResponseData, CONST_NUM } = require('./base')
+const task = require('./task')
 
 const app = express()
 app.use('/public', express.static('public'))
@@ -35,3 +36,5 @@ const server = app.listen(configServer.port, function () {
   const { address, port } = object
   console.log('Sghen-Server is running: https://%s:%s', address, port)
 })
+
+task.initScheduleTask()

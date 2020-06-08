@@ -25,6 +25,8 @@ module.exports = class {
     this.count = 0
     this.timeCreate = ''
     this.timeUpdate = ''
+
+    this.sqlEntities = []
   }
 
   setValues (object = {}) {
@@ -42,6 +44,17 @@ module.exports = class {
     if (!this.content) {
       return false
     }
+    try {
+      const arr = JSON.parse(this.content)
+      if (!arr.length) {
+        return false
+      }
+      if (!arr[0].key || !arr[0].sql) {
+        return false
+      }
+    } catch (error) {
+      return false
+    }
     if (!this.suffixPath) {
       return false
     }
@@ -50,15 +63,14 @@ module.exports = class {
 
   build () {
     // 收集每条虚拟sql实体
-    const sqlEntities = []
+    const sqlEntities = JSON.parse(this.content.replace(/\n/g, '')) || []
     const reg = /\$\{[0-9a-zA-Z_]{1,}\}/g
-    const sqls = this.content.split('$$$').replace(/\n/g, '')
-    sqls.forEach(v => {
-      sqlEntities.push({
-        originSql: v.replace(reg, '?').trim(),
-        orderKeys: (v.match(reg) || []).map(v => {
-          return v.substring(2, v.length - 1)
-        })
+
+    sqlEntities.forEach(o => {
+      // o.key o.sql
+      o.originSql = o.sql.replace(reg, '?').trim()
+      o.orderKeys = (o.sql.match(reg) || []).map(v => {
+        return v.substring(2, v.length - 1)
       })
     })
 
