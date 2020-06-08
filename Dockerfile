@@ -3,5 +3,5 @@ ENV APP_ROOT /var/lib/jenkins/workspace/sghen-node-server
 WORKDIR ${APP_ROOT}
 COPY ./ ${APP_ROOT}
 RUN npm install
-EXPOSE 80
+EXPOSE 443
 CMD npm start

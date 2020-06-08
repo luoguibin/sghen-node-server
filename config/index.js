@@ -10,7 +10,7 @@ const config = {
     dateStrings: true
   },
   server: {
-    port: 80
+    port: 443
   },
   auth: {
     SECRET_KEY: 'test',
