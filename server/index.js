@@ -49,7 +49,7 @@ app.get('*', function (req, res) {
   res.send(GetResponseData(CONST_NUM.ERROR404))
 })
 
-app.set('host', '127.0.0.1')
+app.set('host', '0.0.0.0')
 const server = app.listen(configServer.port, function () {
   const object = server.address()
   const { address, port } = object
