@@ -1,8 +1,5 @@
-const fs = require('fs')
 const JWT = require('jsonwebtoken')
 const { auth: authConfig } = require('../config')
-
-const SECRET_KEY = fs.readFileSync('./config/private.key')
 
 const newToken = function (data = {}) {
   const time = Math.floor(Date.now() / 1000)
@@ -14,11 +11,11 @@ const newToken = function (data = {}) {
       userName: '',
       uLevel: 0
     }
-  }, SECRET_KEY)
+  }, authConfig.SECRET_KEY)
 }
 
 const verify = function (token, call) {
-  JWT.verify(token, SECRET_KEY, function (err, decoded) {
+  JWT.verify(token, authConfig.SECRET_KEY, function (err, decoded) {
     call && call(err || decoded.data)
   })
 }

@@ -10,9 +10,10 @@ const config = {
     dateStrings: true
   },
   server: {
-    port: 8087
+    port: 8282
   },
   auth: {
+    SECRET_KEY: 'test',
     expDuration: 7 * 24 * 60 * 60
   }
 }
