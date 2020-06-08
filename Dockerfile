@@ -1,5 +1,5 @@
 FROM node:latest
-ENV APP_ROOT /var/lib/jenkins/workspace-go/src/go-sghen
+ENV APP_ROOT /var/lib/jenkins/workspace/sghen-node-server
 WORKDIR ${APP_ROOT}
 COPY ./ ${APP_ROOT}
 RUN npm install
