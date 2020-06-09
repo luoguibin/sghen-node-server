@@ -91,8 +91,9 @@ const init = function (app) {
       return
     }
     API.queryAPIS(100, 0).then(data => {
-      res.send(res.send(GetResponseData(data)))
-    }).catch(() => {
+      res.send(GetResponseData(data))
+    }).catch(err => {
+      console.log(err)
       res.send(GetResponseData(CONST_NUM.ERROR))
     })
   })
