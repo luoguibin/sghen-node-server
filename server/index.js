@@ -15,7 +15,8 @@ app.use(function (req, res, next) {
 
   // 接口鉴权
   if (req.method === 'POST' && req.path.includes('auth')) {
-    const token = req.headers.Authorization
+    // req.headers.authorization // 不同协议对头部的大小写有区别...
+    const token = req.get('Authorization')
     if (!token) {
       res.send(GetResponseData(CONST_NUM.ERROR_TOKEN))
       return
