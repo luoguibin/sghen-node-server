@@ -1,16 +1,72 @@
+const validatorMap = {
+  id: function (v) {
+    if (!v) {
+      return false
+    }
+    return /^[0-9A-Za-z]+$/.test(v)
+  },
+  offset: function (v) {
+    if (!v) {
+      return false
+    }
+    return /^[0-9]+$/.test(v)
+  },
+  limit: function (v) {
+    if (!v) {
+      return false
+    }
+    return /^[0-9]+$/.test(v)
+  }
+
+  // name: function (v) {
+  //   return true
+  // },
+  // comment: function (v) {
+  //   return true
+  // },
+  // content: function (v) {
+  //   return true
+  // },
+  // method: function (v) {
+  //   return true
+  // },
+  // status: function (v) {
+  //   return true
+  // },
+  // userId: function (v) {
+  //   return true
+  // },
+  // suffixPath: function (v) {
+  //   return true
+  // }
+}
+
+const formatQuery = function (query) {
+  if (!query) {
+    return
+  }
+  if (query.offset) {
+    query.offset = parseInt(query.offset)
+  }
+  if (query.limit) {
+    query.limit = parseInt(query.limit)
+  }
+}
+
 module.exports = class {
   /*
     dynamic_api:
-    1     id              bigint(20)
-    2     name            varchar(200)
-    3     comment         varchar(200)
-    4     content         mediumtext
-    5     status          int(11)
-    6     time_create     timestamp
-    7     time_update     timestamp
-    8     user_id         bigint(20)
-    9     suffix_path     varchar(100)
-    10    count           int(11)
+    id              bigint(20)
+    name            varchar(200)
+    comment         varchar(200)
+    content         mediumtext
+    method          varchar(10)
+    status          int(11)
+    time_create     timestamp
+    time_update     timestamp
+    user_id         bigint(20)
+    suffix_path     varchar(100)
+    count           int(11)
   */
 
   constructor (id, name, content, suffixPath) {
@@ -20,6 +76,7 @@ module.exports = class {
     this.suffixPath = suffixPath || ''
 
     this.comment = ''
+    this.method = ''
     this.status = 0
     this.userId = 0
     this.count = 0
@@ -37,28 +94,62 @@ module.exports = class {
     }
   }
 
-  validate () {
+  validateProperties () {
+    const errors = []
     if (!this.name) {
-      return false
+      errors.push({ key: 'name', value: '' })
     }
     if (!this.content) {
-      return false
+      errors.push({ key: 'content', value: '' })
+    }
+    if (!this.method) {
+      errors.push({ key: 'method', value: '' })
     }
     try {
       const arr = JSON.parse(this.content)
       if (!arr.length) {
-        return false
+        errors.push({ key: 'content', value: '' })
+      } else {
+        if (!arr[0].key || !arr[0].sql) {
+          errors.push({ key: 'content', value: '' })
+        }
       }
-      if (!arr[0].key || !arr[0].sql) {
-        return false
-      }
-    } catch (error) {
-      return false
+    } catch (err) {
+      errors.push({ key: 'content', value: '' })
     }
     if (!this.suffixPath) {
-      return false
+      errors.push({ key: 'suffixPath', value: '' })
     }
-    return true
+
+    return errors.length > 0 ? errors : null
+  }
+
+  getFormatQueryParams (query) {
+    formatQuery(query)
+    return this.sqlEntities.map(o => {
+      return o.orderKeys.map(key => {
+        return query[key]
+      })
+    })
+  }
+
+  validateSqlEntities (query) {
+    const errors = []
+    this.sqlEntities.forEach(o => {
+      o.orderKeys.forEach(key => {
+        if (!validatorMap[key]) {
+          errors.push({ key, value: query[key], msg: '该字段未定义校验器' })
+        } else if (!validatorMap[key](query[key])) {
+          errors.push({ key, value: query[key] })
+        }
+      })
+    })
+
+    if (errors.length > 0) {
+      return { errors }
+    }
+
+    return { queryParams: this.getFormatQueryParams(query) }
   }
 
   build () {

@@ -10,6 +10,7 @@ const app = express()
 app.use('/public', express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(function (req, res, next) {
+  // console.log(req.body)
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
 
@@ -26,6 +27,7 @@ app.use(function (req, res, next) {
         res.send(GetResponseData(CONST_NUM.ERROR_TOKEN))
         return
       }
+      req.auth = data
       next()
     })
   } else {

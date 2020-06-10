@@ -5,7 +5,8 @@ const CONST_NUM = {
   ERROR404: 1004,
   API_NOT_LOADED: 2000,
   API_REPEAT: 2001,
-  API_PARAMS_ERROR: 2002
+  API_PARAMS_ERROR: 2002,
+  API_AUTH_LOW: 2003
 }
 
 const CONST_MSG = {
@@ -15,10 +16,11 @@ const CONST_MSG = {
   1004: '接口路径不合法',
   2000: '接口未加载或未定义',
   2001: '接口重复定义',
-  2002: '接口参数错误'
+  2002: '接口参数错误',
+  2003: '用户权限不足'
 }
 
-const GetResponseData = function (e, msg) {
+const GetResponseData = function (e, msg, error) {
   const data = {}
   if (typeof e === 'object') {
     data.code = CONST_NUM.SUCCESS
@@ -27,6 +29,9 @@ const GetResponseData = function (e, msg) {
     data.code = e || CONST_NUM.SUCCESS
   }
   data.msg = msg || CONST_MSG[data.code]
+  if (error) {
+    data.error = error
+  }
   return data
 }
 
