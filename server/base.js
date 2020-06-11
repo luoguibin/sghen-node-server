@@ -6,7 +6,8 @@ const CONST_NUM = {
   API_NOT_LOADED: 2000,
   API_REPEAT: 2001,
   API_PARAMS_ERROR: 2002,
-  API_AUTH_LOW: 2003
+  API_AUTH_LOW: 2003,
+  DATA_NOT_OWN: 3004
 }
 
 const CONST_MSG = {
@@ -17,7 +18,8 @@ const CONST_MSG = {
   2000: '接口未加载或未定义',
   2001: '接口重复定义',
   2002: '接口参数错误',
-  2003: '用户权限不足'
+  2003: '用户权限不足',
+  3004: '无法操作非自己创建的数据'
 }
 
 const GetResponseData = function (e, msg, error) {

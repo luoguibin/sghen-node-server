@@ -72,6 +72,7 @@ const init = function (app) {
     }
     const api = new DynamicAPI()
     api.setValues(req.body)
+    api.userId = req.auth.userId
 
     const errors = api.validateProperties()
     if (errors) {
@@ -102,6 +103,7 @@ const init = function (app) {
     }
     const tempApi = new DynamicAPI()
     tempApi.setValues(req.body)
+    // tempApi.userId = req.auth.userId
 
     const errors = tempApi.validateProperties()
     if (errors) {
@@ -153,6 +155,10 @@ const init = function (app) {
     const api = getAPI(id)
     if (!api) {
       res.send(GetResponseData(CONST_NUM.API_PARAMS_ERROR))
+      return
+    }
+    if (api.userId !== req.auth.userId) {
+      res.send(GetResponseData(CONST_NUM.DATA_NOT_OWN))
       return
     }
 
