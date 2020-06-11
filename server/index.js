@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const apiCneter = require('./api-center')
 const { server: configServer } = require('../config')
@@ -7,6 +8,11 @@ const { GetResponseData, CONST_NUM } = require('./base')
 const task = require('./task')
 
 const app = express()
+app.use(cors({
+  origin: ['*'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  alloweHeaders: ['Origin', 'Authorization', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Headers', 'Content-Type']
+}))
 app.use('/public', express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(function (req, res, next) {
