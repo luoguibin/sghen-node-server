@@ -20,7 +20,7 @@ const newToken = function (data = {}) {
 
 const verify = function (token, call) {
   JWT.verify(token, authConfig.SECRET_KEY, function (err, decoded) {
-    call && call(err || decoded.data)
+    call && call(err ? null : decoded.data)
   })
 }
 
