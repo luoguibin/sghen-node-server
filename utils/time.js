@@ -14,13 +14,20 @@ const getDateValueMap = function (d) {
   }
 }
 
+const newDate = function (offset = 8) {
+  const d = new Date()
+  d.setHours(d.getHours() + offset)
+  return d
+}
+
 const getTime = function () {
-  const d = getDateValueMap(new Date())
+  const d = getDateValueMap(newDate())
   return `${d.year}-${d.month}-${d.date} ${d.hour}:${d.minute}:${d.second}`
 }
 
 const timeUtil = {
-  getTime
+  getTime,
+  newDate
 }
 
 module.exports = timeUtil
