@@ -6,6 +6,7 @@ const { server: configServer } = require('../config')
 const auth = require('../core/auth')
 const { GetResponseData, CONST_NUM } = require('./base')
 const task = require('./task')
+const timeUtil = require('../utils/time')
 
 const app = express()
 app.use(cors({
@@ -43,9 +44,9 @@ app.use(function (req, res, next) {
 
 // 基础测试路由
 app.get('/', function (req, res) {
-  res.send(GetResponseData())
+  res.send(GetResponseData({ currentTime: timeUtil.getTime() }))
 }).post('/', function (req, res) {
-  res.send(GetResponseData())
+  res.send(GetResponseData({ currentTime: timeUtil.getTime() }))
 })
 
 // 自定义路由
