@@ -10,17 +10,15 @@ const newToken = function (data = {}) {
   return JWT.sign({
     exp: time + authConfig.expDuration,
     iat: time,
-    data: {
-      userId,
-      userName,
-      uLevel
-    }
+    userId,
+    userName,
+    uLevel
   }, authConfig.SECRET_KEY)
 }
 
 const verify = function (token, call) {
   JWT.verify(token, authConfig.SECRET_KEY, function (err, decoded) {
-    call && call(err ? null : decoded.data)
+    call && call(err ? null : decoded)
   })
 }
 
