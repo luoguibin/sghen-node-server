@@ -1,5 +1,9 @@
 const db = require('../core/db')
 
+/**
+ * @param {Number} limit
+ * @param {Number} offset
+ */
 const queryAPIS = function (limit, offset) {
   return new Promise(function (resolve, reject) {
     db.exec('SELECT COUNT(id) as total FROM dynamic_api2', function (err0, results0, fields0) {
@@ -7,7 +11,7 @@ const queryAPIS = function (limit, offset) {
         reject(err0)
         return
       }
-      const sqlStr = `SELECT id, name, comment, content, method, status, time_create AS timeCreate, time_update AS timeUpdate, user_id AS userId, suffix_path AS suffixPath, count FROM dynamic_api2 ORDER BY time_create DESC LIMIT ${limit} OFFSET ${offset}`
+      const sqlStr = `SELECT id, name, comment, content, params, method, status, time_create AS timeCreate, time_update AS timeUpdate, user_id AS userId, suffix_path AS suffixPath, count FROM dynamic_api2 ORDER BY time_create DESC LIMIT ${limit} OFFSET ${offset}`
       db.exec(sqlStr, [limit, offset], function (err1, results1, fields1) {
         if (err1) {
           reject(err1)
@@ -27,9 +31,10 @@ const queryAPIS = function (limit, offset) {
  */
 const createAPI = function (api) {
   return new Promise(function (resolve, reject) {
-    const keys = 'name, comment, content, method, status, user_id, time_create, time_update, suffix_path, count'
-    const values = `'${api.name}', '${api.comment}', '${api.content}', '${api.method}', '${api.status}', '${api.userId}', '${api.timeCreate}', '${api.timeUpdate}', '${api.suffixPath}', ${api.count}`
-    db.exec(`INSERT INTO dynamic_api2 (${keys}) values (${values})`, function (err, results, fields) {
+    const keys = 'name, comment, content, params, method, status, user_id, time_create, time_update, suffix_path, count'
+    const places = keys.replace(/[a-z_]+/g, '?')
+    const values = [api.name, api.comment, api.content, api.params, api.method, api.status, api.userId, api.timeCreate, api.timeUpdate, api.suffixPath, api.count]
+    db.exec(`INSERT INTO dynamic_api2 (${keys}) values (${places})`, values, function (err, results, fields) {
       if (err) {
         reject(err)
         return
@@ -44,8 +49,8 @@ const createAPI = function (api) {
  */
 const updateAPI = function (api, isCountUpdate) {
   return new Promise(function (resolve, reject) {
-    const keys = isCountUpdate ? 'count = ?' : 'name=?, comment=?, content=?, method=?, status=?, time_update=?, suffix_path=?'
-    const values = isCountUpdate ? [api.count] : [api.name, api.comment, api.content, api.method, api.status, api.timeUpdate, api.suffixPath]
+    const keys = isCountUpdate ? 'count = ?' : 'name=?, comment=?, content=?, params=?, method=?, status=?, time_update=?, suffix_path=?'
+    const values = isCountUpdate ? [api.count] : [api.name, api.comment, api.content, api.params, api.method, api.status, api.timeUpdate, api.suffixPath]
     db.exec(`UPDATE dynamic_api2 SET ${keys} WHERE id=?`, [...values, api.id], function (err, results, fields) {
       if (err) {
         reject(err)
@@ -56,6 +61,9 @@ const updateAPI = function (api, isCountUpdate) {
   })
 }
 
+/**
+ * @param {DynamicAPI} api
+ */
 const deleteAPI = function (id) {
   return new Promise(function (resolve, reject) {
     db.exec('DELETE FROM dynamic_api2 WHERE id=?', [id], function (err, results, fields) {
@@ -71,12 +79,12 @@ const deleteAPI = function (id) {
 /**
  * @param {DynamicAPI} api
  */
-const execAPI = function (sqlEntities, queryParams) {
+const execAPI = function (sqls, queryParams) {
   // console.log('execAPI() start')
   return new Promise(function (resolve, reject) {
-    if (sqlEntities.length === 1) {
-      console.log(sqlEntities[0].originSql, queryParams[0])
-      db.exec(sqlEntities[0].originSql, queryParams[0], function (err, results, fields) {
+    if (sqls.length === 1) {
+      // console.log(sqls[0].execSql, queryParams[0])
+      db.exec(sqls[0].execSql, queryParams[0], function (err, results, fields) {
         if (err) {
           reject(err)
           return
@@ -90,8 +98,8 @@ const execAPI = function (sqlEntities, queryParams) {
     // 顺序执行多条sql
     const orderExec = function (index = 0) {
       // console.log('execAPI() orderExec', index)
-      const { originSql, key: dataKey } = sqlEntities[index]
-      db.exec(originSql, queryParams[index], function (err, results, fields) {
+      const { execSql, key: dataKey } = sqls[index]
+      db.exec(execSql, queryParams[index], function (err, results, fields) {
         if (err) {
           reject(err)
           return
@@ -104,7 +112,7 @@ const execAPI = function (sqlEntities, queryParams) {
           datas[dataKey] = results
         }
 
-        if (index === sqlEntities.length - 1) {
+        if (index === sqls.length - 1) {
           resolve(datas)
         } else {
           orderExec(index + 1)

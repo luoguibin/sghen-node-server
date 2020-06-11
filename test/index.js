@@ -1,5 +1,6 @@
 const request = require('request')
 const auth = require('../core/auth')
+const timeUtil = require('../utils/time')
 
 const outputFunc = function (error, response, body) {
   // console.log(error, response, body)
@@ -11,30 +12,38 @@ const outputFunc = function (error, response, body) {
 }
 const host = 'http://localhost:8282'
 const baseUrl = host
+const token = auth.newToken({ userId: 16405, userName: 'yimo', uLevel: 9 })
+
 // const host = 'https://www.sghen.cn'
 // const baseUrl = host + '/napi'
+// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTIyMDM1NjAsImlhdCI6MTU5MTU5ODc2MCwidUxldmVsIjoiOSIsInVzZXJJZCI6IjE2NDA1IiwidXNlck5hbWUiOiLkuYLmnKsifQ.bu16V6WU4ufWWP1jfIOyy8wwcIkgpUtfJzCu5v80Vrg'
 
-const token = auth.newToken({ userId: 16405, level: 9 })
-auth.verify(token, data => {
-  console.log('auth.verify', data)
-})
+// auth.verify(token, data => {
+//   console.log('auth.verify', data)
+// })
 
-request.post({
-  url: `${baseUrl}/auth/api-center/update`,
-  headers: {
-    Authorization: token
-  },
-  form: {
-    id: 3,
-    name: '查询最新的10条API数据',
-    comment: '',
-    content: JSON.stringify([{ key: 'data', sql: 'SELECT d.*, u.user_name, u.avatar FROM dynamic_api2 d LEFT JOIN user u ON d.user_id=u.id LIMIT 10' }]),
-    method: 'GET',
-    status: 1,
-    userId: 16405,
-    suffixPath: 'list'
-  }
-}, outputFunc)
+console.log(timeUtil.newDate())
+
+// request.get({
+//   url: `${baseUrl}/`
+// }, outputFunc)
+
+// request.post({
+//   url: `${baseUrl}/auth/api-center/update`,
+//   headers: {
+//     Authorization: token
+//   },
+//   form: {
+//     id: 1,
+//     name: '查询最新的10条API数据',
+//     comment: '',
+//     content: JSON.stringify([{ key: 'data', sql: 'SELECT d.*, u.user_name, u.avatar FROM dynamic_api2 d LEFT JOIN user u ON d.user_id=u.id LIMIT 10' }]),
+//     params: '{}',
+//     method: 'GET',
+//     status: 1,
+//     suffixPath: 'list'
+//   }
+// }, outputFunc)
 
 // const tempContent = JSON.stringify([
 //   { key: 'data', sql: 'INSERT INTO dynamic_api2 (name, comment, content, method, status, user_id, time_create, time_update, suffix_path, count) values (${name}, ${comment}, ${content}, ${method}, ${status}, ${userId}, now(), now(), ${suffixPath}, 0)' }
@@ -50,29 +59,26 @@ request.post({
 //     content: tempContent,
 //     method: 'POST',
 //     status: 1,
-//     userId: 16405,
 //     suffixPath: 'create'
 //   }
 // }, outputFunc)
 
-// const tempContent = JSON.stringify([
-//   { key: 'data', sql: 'SELECT * FROM dynamic_api2 WHERE name=${name}' }
-// ])
-// request.post({
-//   url: `${baseUrl}/auth/dynamic-api/create`,
-//   headers: {
-//     Authorization: token
-//   },
-//   form: {
-//     name: '查询API',
-//     comment: 'Auth认证',
-//     content: tempContent,
-//     method: 'POST',
-//     status: 1,
-//     userId: 16405,
-//     suffixPath: 'query-by-name'
-//   }
-// }, outputFunc)
+request.post({
+  url: `${baseUrl}/auth/api-center/update`,
+  headers: {
+    Authorization: token
+  },
+  form: {
+    id: 15,
+    name: '查询API',
+    comment: 'Auth认证',
+    content: JSON.stringify([{ key: 'data', sql: 'SELECT * FROM dynamic_api2 WHERE id=${id}' }]),
+    params: JSON.stringify({ id: { type: 'NUMBER' } }),
+    method: 'GET',
+    status: 1,
+    suffixPath: 'query-by-id'
+  }
+}, outputFunc)
 
 // request.post({
 //   url: `${baseUrl}/auth/dynamic-api/query-by-name`,

@@ -1,57 +1,4 @@
-const validatorMap = {
-  id: function (v) {
-    if (!v) {
-      return false
-    }
-    return /^[0-9A-Za-z]+$/.test(v)
-  },
-  offset: function (v) {
-    if (!v) {
-      return false
-    }
-    return /^[0-9]+$/.test(v)
-  },
-  limit: function (v) {
-    if (!v) {
-      return false
-    }
-    return /^[0-9]+$/.test(v)
-  }
-
-  // name: function (v) {
-  //   return true
-  // },
-  // comment: function (v) {
-  //   return true
-  // },
-  // content: function (v) {
-  //   return true
-  // },
-  // method: function (v) {
-  //   return true
-  // },
-  // status: function (v) {
-  //   return true
-  // },
-  // userId: function (v) {
-  //   return true
-  // },
-  // suffixPath: function (v) {
-  //   return true
-  // }
-}
-
-const formatQuery = function (query) {
-  if (!query) {
-    return
-  }
-  if (query.offset) {
-    query.offset = parseInt(query.offset)
-  }
-  if (query.limit) {
-    query.limit = parseInt(query.limit)
-  }
-}
+const paramUtil = require('../utils/param')
 
 module.exports = class {
   /*
@@ -59,7 +6,8 @@ module.exports = class {
     id              bigint(20)
     name            varchar(200)
     comment         varchar(200)
-    content         mediumtext
+    content         json
+    params          json
     method          varchar(10)
     status          int(11)
     time_create     timestamp
@@ -77,15 +25,22 @@ module.exports = class {
 
     this.comment = ''
     this.method = ''
+    this.params = ''
     this.status = 0
     this.userId = 0
     this.count = 0
     this.timeCreate = ''
     this.timeUpdate = ''
 
-    this.sqlEntities = []
+    // 非sql字段属性
+    this.sqls = []
+    this.sqlParams = {}
   }
 
+  /**
+   * @description 第一步：设置参数
+   * @param {*} object 基础类型参数对象
+   */
   setValues (object = {}) {
     for (const key in object) {
       if (this[key] !== undefined && (typeof this[key] === 'number' || typeof this[key] === 'string')) {
@@ -94,52 +49,72 @@ module.exports = class {
     }
   }
 
+  /**
+   * @description 第二步：校验本API对象的SQL字段参数
+   */
   validateProperties () {
     const errors = []
-    if (!this.name) {
+    if (!paramUtil.STRING(this.name)) {
       errors.push({ key: 'name', value: '' })
     }
-    if (!this.content) {
+    if (!paramUtil.STRING(this.content)) {
       errors.push({ key: 'content', value: '' })
     }
-    if (!this.method) {
+    if (!paramUtil.STRING(this.method)) {
       errors.push({ key: 'method', value: '' })
     }
-    try {
-      const arr = JSON.parse(this.content)
-      if (!arr.length) {
-        errors.push({ key: 'content', value: '' })
-      } else {
-        if (!arr[0].key || !arr[0].sql) {
-          errors.push({ key: 'content', value: '' })
-        }
-      }
-    } catch (err) {
+    if (!paramUtil.STRING(this.suffixPath)) {
+      errors.push({ key: 'suffixPath', value: '' })
+    }
+
+    const contentJson = paramUtil.JSON(this.content)
+    if (!contentJson) {
+      errors.push({ key: 'content', value: '' })
+    } if (!contentJson.length === 0) {
+      errors.push({ key: 'content', value: '' })
+    } else if (!contentJson[0].key || !contentJson[0].sql) {
       errors.push({ key: 'content', value: '' })
     }
-    if (!this.suffixPath) {
-      errors.push({ key: 'suffixPath', value: '' })
+
+    const paramsJson = paramUtil.JSON(this.params)
+    if (!paramsJson) {
+      errors.push({ key: 'params', value: '' })
     }
 
     return errors.length > 0 ? errors : null
   }
 
-  getFormatQueryParams (query) {
-    formatQuery(query)
-    return this.sqlEntities.map(o => {
-      return o.orderKeys.map(key => {
-        return query[key]
+  /**
+   * @description 第三布：构建非本对象中非SQL字段属性
+   */
+  build () {
+    // 收集每条虚拟sql实体
+    const reg = /\$\{[0-9a-zA-Z_]{1,}\}/g
+    const sqls = JSON.parse(this.content.replace(/\n/g, ''))
+    sqls.forEach(o => {
+      // o.key o.sql
+      o.execSql = o.sql.replace(reg, '?').trim()
+      o.orderKeys = (o.sql.match(reg) || []).map(v => {
+        return v.substring(2, v.length - 1)
       })
     })
+
+    this.sqls = sqls
+    this.sqlParams = paramUtil.JSON(this.params) || {}
   }
 
+  /**
+   * @description 满足三个步骤后，可以获取API的顺序参数列表
+   */
   validateSqlEntities (query) {
     const errors = []
-    this.sqlEntities.forEach(o => {
+    const sqlParams = this.sqlParams
+    this.sqls.forEach(o => {
       o.orderKeys.forEach(key => {
-        if (!validatorMap[key]) {
+        const validator = paramUtil[sqlParams[key].type]
+        if (!validator) {
           errors.push({ key, value: query[key], msg: '该字段未定义校验器' })
-        } else if (!validatorMap[key](query[key])) {
+        } else if (validator(query[key]) === null) {
           errors.push({ key, value: query[key] })
         }
       })
@@ -152,19 +127,12 @@ module.exports = class {
     return { queryParams: this.getFormatQueryParams(query) }
   }
 
-  build () {
-    // 收集每条虚拟sql实体
-    const sqlEntities = JSON.parse(this.content.replace(/\n/g, '')) || []
-    const reg = /\$\{[0-9a-zA-Z_]{1,}\}/g
-
-    sqlEntities.forEach(o => {
-      // o.key o.sql
-      o.originSql = o.sql.replace(reg, '?').trim()
-      o.orderKeys = (o.sql.match(reg) || []).map(v => {
-        return v.substring(2, v.length - 1)
+  getFormatQueryParams (query) {
+    const sqlParams = this.sqlParams
+    return this.sqls.map(o => {
+      return o.orderKeys.map(key => {
+        return paramUtil[sqlParams[key].type](query[key])
       })
     })
-
-    this.sqlEntities = sqlEntities
   }
 }

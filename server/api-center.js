@@ -2,6 +2,7 @@ const API = require('../core/dynamic-api')
 const DynamicAPI = require('../entity/dynamic-api')
 const { GetResponseData, CONST_NUM } = require('./base')
 const timeUtil = require('../utils/time')
+const paramUtil = require('../utils/param')
 
 const API_CENTER = {}
 const API_CACHE = {}
@@ -49,6 +50,10 @@ const getAPI = function (id) {
  * @param {Express} app
  */
 const init = function (app) {
+  app.get('/open/api-center/config', function (req, res) {
+    const keys = Object.keys(paramUtil)
+    res.send(GetResponseData(keys))
+  })
   // API列表查询
   app.get('/open/api-center/list', function (req, res) {
     const limit = parseInt(req.query.limit || '10')
@@ -60,8 +65,7 @@ const init = function (app) {
     API.queryAPIS(100, 0).then(data => {
       res.send(GetResponseData(data))
     }).catch(err => {
-      console.log(err)
-      res.send(GetResponseData(CONST_NUM.ERROR))
+      res.send(GetResponseData(CONST_NUM.ERROR, '', err))
     })
   })
   // API创建
@@ -91,8 +95,8 @@ const init = function (app) {
       api.build()
       API_CENTER[api.suffixPath] = api
       res.send(GetResponseData(api))
-    }).catch(() => {
-      res.send(GetResponseData(CONST_NUM.ERROR))
+    }).catch(err => {
+      res.send(GetResponseData(CONST_NUM.ERROR, '', err))
     })
   })
   // API更新
@@ -137,8 +141,7 @@ const init = function (app) {
       api.build()
       res.send(GetResponseData(api))
     }).catch(err => {
-      console.log(err)
-      res.send(GetResponseData(CONST_NUM.ERROR))
+      res.send(GetResponseData(CONST_NUM.ERROR, '', err))
     })
   })
   // API删除
@@ -165,8 +168,8 @@ const init = function (app) {
     API.deleteAPI(api.id).then(o => {
       delete API_CENTER[api.suffixPath]
       res.send(GetResponseData(o))
-    }).catch(() => {
-      res.send(GetResponseData(CONST_NUM.ERROR))
+    }).catch(err => {
+      res.send(GetResponseData(CONST_NUM.ERROR, '', err))
     })
   })
 
@@ -195,7 +198,7 @@ const init = function (app) {
     }
 
     // console.log(api)
-    API.execAPI(api.sqlEntities, queryParams).then(data => {
+    API.execAPI(api.sqls, queryParams).then(data => {
       // 设置缓存
       if (api.status === API_STATUS.CACHED) {
         API_CACHE[api.id] = data
@@ -229,7 +232,7 @@ const init = function (app) {
     }
 
     // console.log(api)
-    API.execAPI(api.sqlEntities, queryParams).then(data => {
+    API.execAPI(api.sqls, queryParams).then(data => {
       // 设置缓存
       if (api.status === API_STATUS.CACHED) {
         API_CACHE[api.id] = data
