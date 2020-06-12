@@ -34,7 +34,11 @@ app.use(function (req, res, next) {
         res.send(GetResponseData(CONST_NUM.ERROR_TOKEN))
         return
       }
-      req.auth = data
+      req.auth = {
+        userId: +data.userId,
+        userName: data.userName,
+        uLevel: +data.uLevel
+      }
       next()
     })
   } else {

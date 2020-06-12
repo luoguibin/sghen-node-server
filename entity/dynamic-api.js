@@ -112,6 +112,7 @@ module.exports = class {
     this.sqls.forEach(o => {
       o.orderKeys.forEach(key => {
         const validator = paramUtil[sqlParams[key].type]
+        // console.log(key, query[key], validator ? validator((query[key])) : '')
         if (!validator) {
           errors.push({ key, value: query[key], msg: '该字段未定义校验器' })
         } else if (validator(query[key]) === null) {

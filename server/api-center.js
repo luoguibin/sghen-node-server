@@ -193,6 +193,7 @@ const init = function (app) {
     // 检测参数
     const { errors, queryParams } = api.validateSqlEntities(req.query)
     if (errors) {
+      api.count += 1
       res.send(GetResponseData(CONST_NUM.ERROR, '', errors))
       return
     }
@@ -218,6 +219,7 @@ const init = function (app) {
 
     // 读取缓存
     if (api.status === API_STATUS.CACHED && API_CACHE[api.id]) {
+      api.count += 1
       const data = GetResponseData(API_CACHE[api.id])
       data.isCached = true
       res.send(data)
