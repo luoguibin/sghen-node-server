@@ -133,6 +133,7 @@ const init = function (app) {
       api.content = tempApi.content
       api.method = tempApi.method
       api.status = tempApi.status
+      api.params = tempApi.params
       if (api.suffixPath !== tempApi.suffixPath) {
         delete API_CENTER[api.suffixPath]
         api.suffixPath = tempApi.suffixPath
