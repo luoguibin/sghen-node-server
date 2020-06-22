@@ -112,9 +112,13 @@ module.exports = class {
     this.sqls.forEach(o => {
       o.orderKeys.forEach(key => {
         const validator = paramUtil[sqlParams[key].type]
-        // console.log(key, query[key], validator ? validator((query[key])) : '')
+
         if (!validator) {
           errors.push({ key, value: query[key], msg: '该字段未定义校验器' })
+        } else if (sqlParams[key].type === 'TEMP') {
+          // 运行时变量
+          o.hasTemp = key
+          // orderKeys = ['id']
         } else if (validator(query[key]) === null) {
           errors.push({ key, value: query[key] })
         }
@@ -131,6 +135,10 @@ module.exports = class {
   getFormatQueryParams (query) {
     const sqlParams = this.sqlParams
     return this.sqls.map(o => {
+      // 运行时获取参数，有且仅有一个，且根据类型为data的数组获取对应的值
+      if (o.hasTemp) {
+        return [o.hasTemp]
+      }
       return o.orderKeys.map(key => {
         return paramUtil[sqlParams[key].type](query[key])
       })

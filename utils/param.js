@@ -7,7 +7,7 @@ const paramUtil = {
   },
   NUMBERS: function (str) {
     if (/^[0-9,]+$/.test(str)) {
-      return str
+      return str.split(',')
     }
     return null
   },
@@ -29,6 +29,9 @@ const paramUtil = {
       return str
     }
     return null
+  },
+  TEMP: function (str) {
+    return str
   }
 }
 
