@@ -118,6 +118,7 @@ module.exports = class {
         } else if (sqlParams[key].type === 'TEMP') {
           // 运行时变量
           o.hasTemp = key
+          o.tempListKey = sqlParams[key].listKey
           // orderKeys = ['id']
         } else if (validator(query[key]) === null) {
           errors.push({ key, value: query[key] })

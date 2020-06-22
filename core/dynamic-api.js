@@ -98,9 +98,10 @@ const execAPI = function (sqls, queryParams) {
     // 顺序执行多条sql
     const orderExec = function (index = 0) {
       // console.log('execAPI() orderExec', index)
-      const { execSql, key: dataKey, hasTemp: tempKey } = sqls[index]
+      const { execSql, key: dataKey, hasTemp: tempKey, tempListKey } = sqls[index]
       if (tempKey) {
-        if (!datas.list || !(datas.list instanceof Array)) {
+        const list = datas[tempListKey || 'list']
+        if (!list || !(list instanceof Array)) {
           const err = {
             code: 500,
             msg: 'Running exception: API get temp query params error'
@@ -108,7 +109,7 @@ const execAPI = function (sqls, queryParams) {
           reject(err)
           return
         }
-        const temp = datas.list.map(o => o[tempKey])
+        const temp = list.map(o => o[tempKey])
         const tempMap = {}
         const tempParams = []
         temp.forEach(v => {
