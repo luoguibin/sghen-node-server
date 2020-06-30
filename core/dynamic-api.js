@@ -109,19 +109,26 @@ const execAPI = function (sqls, queryParams) {
           reject(err)
           return
         }
+        // 筛选出对应tempKey的基本数据构成的数组
         const temp = list.map(o => o[tempKey])
         const tempMap = {}
-        const tempParams = []
+        const tempData = []
+        // 重复值过滤
         temp.forEach(v => {
           if (!tempMap[v]) {
             tempMap[v] = true
-            tempParams.push(v)
+            tempData.push(v)
           }
         })
-        queryParams[index] = [temp]
-        if (queryParams[index].length === 0) {
+        if (tempData.length === 0) {
           datas[dataKey] = []
+          if (index === sqls.length - 1) {
+            resolve(datas)
+          } else {
+            orderExec(index + 1)
+          }
         }
+        queryParams[index] = [tempData]
       }
       db.exec(execSql, queryParams[index], function (err, results, fields) {
         if (err) {
