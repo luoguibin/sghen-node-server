@@ -6,7 +6,7 @@ const db = require('../core/db')
  */
 const queryAPIS = function (limit, offset) {
   return new Promise(function (resolve, reject) {
-    db.exec('SELECT COUNT(id) as total FROM dynamic_api2', function (err0, results0, fields0) {
+    db.exec('SELECT COUNT(id) as total FROM dynamic_api2', null, function (err0, results0, fields0) {
       if (err0) {
         reject(err0)
         return
