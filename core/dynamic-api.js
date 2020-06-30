@@ -119,6 +119,9 @@ const execAPI = function (sqls, queryParams) {
           }
         })
         queryParams[index] = [temp]
+        if (queryParams[index].length === 0) {
+          datas[dataKey] = []
+        }
       }
       db.exec(execSql, queryParams[index], function (err, results, fields) {
         if (err) {
