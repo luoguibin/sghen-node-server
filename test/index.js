@@ -28,31 +28,31 @@ console.log(timeUtil.newDate())
 //   url: `${baseUrl}/`
 // }, outputFunc)
 
-request.post({
-  url: `${baseUrl}/auth/api-center/update`,
-  headers: {
-    Authorization: token
-  },
-  form: {
-    id: 27,
-    name: '查询最新的10条评论数据',
-    comment: '',
-    content: JSON.stringify([
-      {
-        key: 'list',
-        sql: 'SELECT * FROM comment LIMIT 10'
-      },
-      {
-        key: 'users',
-        sql: 'SELECT * FROM user WHERE id IN (${from_id})'
-      }
-    ]),
-    params: '{"from_id":{"type":"TEMP"}}',
-    method: 'GET',
-    status: 1,
-    suffixPath: 'v2/comment/list'
-  }
-}, outputFunc)
+// request.post({
+//   url: `${baseUrl}/auth/api-center/update`,
+//   headers: {
+//     Authorization: token
+//   },
+//   form: {
+//     id: 27,
+//     name: '查询最新的10条评论数据',
+//     comment: '',
+//     content: JSON.stringify([
+//       {
+//         key: 'list',
+//         sql: 'SELECT * FROM comment LIMIT 10'
+//       },
+//       {
+//         key: 'users',
+//         sql: 'SELECT * FROM user WHERE id IN (${from_id})'
+//       }
+//     ]),
+//     params: '{"from_id":{"type":"TEMP"}}',
+//     method: 'GET',
+//     status: 1,
+//     suffixPath: 'v2/comment/list'
+//   }
+// }, outputFunc)
 
 // const tempContent = JSON.stringify([
 //   { key: 'data', sql: 'INSERT INTO dynamic_api2 (name, comment, content, method, status, user_id, time_create, time_update, suffix_path, count) values (${name}, ${comment}, ${content}, ${method}, ${status}, ${userId}, now(), now(), ${suffixPath}, 0)' }
@@ -98,3 +98,15 @@ request.post({
 //     name: '查询---API\' OR 1=1'
 //   }
 // }, outputFunc)
+
+request.post({
+  url: `${baseUrl}/services`,
+  headers: {
+    Authorization: token
+  },
+  form: {
+    serviceName: 'peotry',
+    type: 'auto-create-peotry',
+    keyWords: '白日梦'
+  }
+}, outputFunc)

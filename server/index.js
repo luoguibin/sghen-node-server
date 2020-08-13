@@ -6,6 +6,7 @@ const { server: configServer } = require('../config')
 const auth = require('../core/auth')
 const { GetResponseData, CONST_NUM } = require('./base')
 const task = require('./task')
+const serviceCneter = require('../services/index')
 const timeUtil = require('../utils/time')
 
 const app = express()
@@ -56,6 +57,13 @@ app.get('/', function (req, res) {
 // 自定义路由
 apiCneter.init(app)
 
+// 微服务路由
+app.post('/services', function (req, res) {
+  const body = req.body || {}
+  serviceCneter.exec(body.serviceName, body)
+  res.send(GetResponseData({ currentTime: timeUtil.getTime() }, '暂支持直接调用，不支持业务数据返回'))
+})
+
 // 最后定义通配路由404
 app.get('*', function (req, res) {
   res.send(GetResponseData(CONST_NUM.ERROR404))
@@ -71,3 +79,6 @@ const server = app.listen(configServer.port, function () {
 })
 
 task.initScheduleTask()
+
+// 启动微服务中心
+serviceCneter.start()
