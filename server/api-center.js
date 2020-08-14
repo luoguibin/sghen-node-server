@@ -182,7 +182,7 @@ const init = function (app) {
       res.send(GetResponseData(CONST_NUM.API_NOT_LOADED))
       return
     }
-
+    api.count += 1
     // 读取缓存
     if (api.status === API_STATUS.CACHED && API_CACHE[api.id]) {
       const data = GetResponseData(API_CACHE[api.id])
@@ -194,7 +194,6 @@ const init = function (app) {
     // 检测参数
     const { errors, queryParams } = api.validateSqlEntities(req.query)
     if (errors) {
-      api.count += 1
       res.send(GetResponseData(CONST_NUM.ERROR, '', errors))
       return
     }
@@ -205,7 +204,6 @@ const init = function (app) {
       if (api.status === API_STATUS.CACHED) {
         API_CACHE[api.id] = data
       }
-      api.count += 1
       res.send(GetResponseData(data))
     }).catch(err => {
       res.send(GetResponseData(CONST_NUM.ERROR, '', err))
@@ -218,9 +216,9 @@ const init = function (app) {
       return
     }
 
+    api.count += 1
     // 读取缓存
     if (api.status === API_STATUS.CACHED && API_CACHE[api.id]) {
-      api.count += 1
       const data = GetResponseData(API_CACHE[api.id])
       data.isCached = true
       res.send(data)
@@ -240,7 +238,6 @@ const init = function (app) {
       if (api.status === API_STATUS.CACHED) {
         API_CACHE[api.id] = data
       }
-      api.count += 1
       res.send(GetResponseData(data))
     }).catch(err => {
       res.send(GetResponseData(CONST_NUM.ERROR, '', err))

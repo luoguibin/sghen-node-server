@@ -43,8 +43,20 @@ module.exports = class {
    */
   setValues (object = {}) {
     for (const key in object) {
-      if (this[key] !== undefined && (typeof this[key] === 'number' || typeof this[key] === 'string')) {
+      if (this[key] === undefined) {
+        continue
+      }
+
+      const keyType = typeof this[key]
+      if (keyType === 'number') {
+        const v = parseInt(object[key])
+        if (!isNaN(v)) {
+          this[key] = v
+        }
+      } else if (keyType === 'string') {
         this[key] = object[key]
+      } else {
+        console.log('setValues invalid value type')
       }
     }
   }
