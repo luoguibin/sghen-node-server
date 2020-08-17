@@ -3,9 +3,9 @@ const { updateAPIs } = require('./api-center')
 const timeUtil = require('../utils/time')
 
 const initScheduleTask = function () {
-  // 每分钟的第30秒定时执行一次:
+  // 每天凌晨3时执行一次:
   console.log('initScheduleTask')
-  schedule.scheduleJob('30 * * * * *', () => {
+  schedule.scheduleJob('0 0 3 * * *', () => {
     console.log('scheduleJob:' + timeUtil.newDate())
     updateAPIs()
   })

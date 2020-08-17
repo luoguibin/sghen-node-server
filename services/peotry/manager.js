@@ -5,9 +5,10 @@ const Mock = require('mockjs')
 
 const host = 'www.sghen.cn'
 const baseUrl = `https://${host}/sapi/v1/`
-const LoginUserMap = {}
-const UserPraiseMap = {}
-const peotries = []
+
+let LoginUserMap = {}
+let UserPraiseMap = {}
+let peotries = []
 
 const RobotStartID = 200100001
 const RobotCount = 10000
@@ -175,7 +176,14 @@ function autoComments () {
   }
 
   commentTimer = setTimeout(() => {
-    autoComments()
+    if (Object.keys(LoginUserMap).length > 1000) {
+      stopAutoComment()
+      setTimeout(() => {
+        startAutoComment()
+      }, 1000)
+    } else {
+      autoComments()
+    }
   }, 10000)
 }
 
@@ -194,9 +202,9 @@ const startAutoComment = function () {
   }
   peotries.splice(0, peotries.length)
   getPoetriesInfos().then(resp => {
-    const len = resp.data.length
+    // const len = resp.data.length
     // console.log(0, 'getPoetriesInfos() success count=' + len)
-    peotries.push(...resp.data)
+    peotries = resp.data
     autoComments()
   }).catch(err => {
     // console.log(0, `getPoetriesInfos() err: ${err}`)
@@ -211,6 +219,9 @@ const stopAutoComment = function () {
     clearTimeout(commentTimer)
     commentTimer = undefined
   }
+  LoginUserMap = {}
+  UserPraiseMap = {}
+  peotries = []
 }
 
 module.exports = {
