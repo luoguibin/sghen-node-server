@@ -67,7 +67,6 @@ const dealMsg = function (msg) {
       w.send(msgObj)
     })
   }
-  }
 }
 
 const gameCneter = {
