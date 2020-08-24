@@ -68,6 +68,8 @@ function loginUser (id) {
     LoginUserMap[info.id] = info
     // console.log(id, 'loginUser() success')
     return resp
+  }).catch(err => {
+    console.log(`loginUser() err::${err}`)
   })
 }
 
@@ -86,6 +88,8 @@ function commentPeotry (peotry, user, toId, content) {
       UserPraiseMap[peotry.id] = true
     }
     // console.log(user.account, 'commentPeotry() success')
+  }).catch(err => {
+    console.log(`commentPeotry() err::${err}`)
   })
 }
 
@@ -116,12 +120,14 @@ const autoCreatePeotry = function (keyWords) {
 
       createPeotry(resp.data, '', keyWords, content).then(() => {
         // console.log(userId, 'createPoetry() success')
+      }).catch(err => {
+        console.log(`createPeotry() err::${err}`)
       })
     }).catch(err => {
-      // console.log(userId, err)
+      console.log(userId, err)
     })
   }).catch(err => {
-    // console.log(userId, err)
+    console.log(userId, err)
   })
 }
 
@@ -145,7 +151,7 @@ function checkBeforeCommentPeotry (peotry, user, toId = -1, content = 'praise') 
         }
         commentPeotry(peotry, user, toId, content)
       }).catch(err => {
-        // console.log(user.account, err)
+        console.log(user.account, err)
       })
       return
     }
@@ -171,6 +177,8 @@ function autoComments () {
     } else {
       loginUser(userId).then(resp => {
         checkBeforeCommentPeotry(peotry, resp.data)
+      }).catch(err => {
+        console.log(`loginUser() err::${err}`)
       })
     }
   }
@@ -207,7 +215,7 @@ const startAutoComment = function () {
     peotries = resp.data
     autoComments()
   }).catch(err => {
-    // console.log(0, `getPoetriesInfos() err: ${err}`)
+    console.log(`getPoetriesInfos() err: ${err}`)
   })
 }
 

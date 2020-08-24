@@ -251,6 +251,9 @@ const updateAPIs = function () {
   for (const key in API_CENTER) {
     API.updateAPI(API_CENTER[key], true)
   }
+  setTimeout(() => {
+    initAPICenter()
+  }, 1000)
 }
 
 const apiCneter = {
