@@ -1,7 +1,9 @@
 const express = require('express')
+const expressWs = require('express-ws')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const apiCneter = require('./api-center')
+const apiCenter = require('./api-center')
+const gameCenter = require('./game-center')
 const { server: configServer } = require('../config')
 const auth = require('../core/auth')
 const { GetResponseData, CONST_NUM } = require('./base')
@@ -15,6 +17,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   alloweHeaders: ['Origin', 'Authorization', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Headers', 'Content-Type']
 }))
+expressWs(app)
 app.use('/public', express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(function (req, res, next) {
@@ -55,7 +58,8 @@ app.get('/', function (req, res) {
 })
 
 // 自定义路由
-apiCneter.init(app)
+apiCenter.init(app)
+gameCenter.init(app)
 
 // 微服务路由
 app.post('/services', function (req, res) {
