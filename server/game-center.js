@@ -63,8 +63,8 @@ const dealMsg = function (msg) {
   if (id === -1) {
     userWs.heartTime = timeUtil.newDate().getTime()
   } else {
-    wsList.forEach(w => {
-      w.send(msgObj)
+    wsList.forEach(o => {
+      o.ws.send(msgObj)
     })
   }
 }
