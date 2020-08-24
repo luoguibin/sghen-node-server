@@ -8,7 +8,7 @@ const { server: configServer } = require('../config')
 const auth = require('../core/auth')
 const { GetResponseData, CONST_NUM } = require('./base')
 const task = require('./task')
-const serviceCneter = require('../services/index')
+const serviceCenter = require('../services/index')
 const timeUtil = require('../utils/time')
 
 const app = express()
@@ -64,7 +64,7 @@ gameCenter.init(app)
 // 微服务路由
 app.post('/services', function (req, res) {
   const body = req.body || {}
-  serviceCneter.exec(body.serviceName, body)
+  serviceCenter.exec(body.serviceName, body)
   res.send(GetResponseData({ currentTime: timeUtil.getTime() }, '暂支持直接调用，不支持业务数据返回'))
 })
 
@@ -85,4 +85,4 @@ const server = app.listen(configServer.port, function () {
 task.initScheduleTask()
 
 // 启动微服务中心
-serviceCneter.start()
+serviceCenter.start()

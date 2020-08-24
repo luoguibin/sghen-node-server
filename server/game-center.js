@@ -50,20 +50,23 @@ const init = function (app) {
   }, 10000)
 }
 
-const dealMsg = function (msgObj) {
-  if (msgObj && msgObj instanceof Object) {
-    const { id, userId } = msgObj
-    if (!id || !userId) {
-      return
-    }
-    const userWs = wsList.find(o => o.userId === userId)
-    if (id === -1) {
-      userWs.heartTime = timeUtil.newDate().getTime()
-    } else {
-      wsList.forEach(w => {
-        w.send(msgObj)
-      })
-    }
+const dealMsg = function (msg) {
+  if (!msg) {
+    return
+  }
+  const msgObj = JSON.parse(msg)
+  const { id, userId } = msgObj
+  if (!id || !userId) {
+    return
+  }
+  const userWs = wsList.find(o => o.userId === userId)
+  if (id === -1) {
+    userWs.heartTime = timeUtil.newDate().getTime()
+  } else {
+    wsList.forEach(w => {
+      w.send(msgObj)
+    })
+  }
   }
 }
 
