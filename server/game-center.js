@@ -67,6 +67,8 @@ const dealMsg = function (msg) {
       return
     }
     userWs.heartTime = timeUtil.newDate().getTime()
+    msgObj.userCount = wsList.length
+    userWs.ws.send(JSON.stringify(msgObj))
   } else {
     wsList.forEach(o => {
       o.ws.send(msg)
