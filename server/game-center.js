@@ -29,14 +29,14 @@ const init = function (app) {
         }
 
         oldClient.heartTime = timeUtil.now()
-        ws.send(JSON.stringify({ id: 11, userId, msg: '断线重连成功' }))
+        dealMsg(JSON.stringify({ id: 11, userId, msg: '断线重连成功' }))
       } else {
         wsList.push({
           userId,
           heartTime: timeUtil.now(),
           ws: ws
         })
-        ws.send(JSON.stringify({ id: 10, userId, msg: '连接成功' }))
+        dealMsg(JSON.stringify({ id: 10, userId, msg: '连接成功' }))
       }
       ws.on('message', msg => {
         dealMsg(msg)
@@ -70,7 +70,7 @@ const dealMsg = function (msg = '{}') {
     }
     userWs.heartTime = timeUtil.now()
     msgObj.userCount = wsList.length
-    userWs.ws.send(JSON.stringify(msgObj))
+    // userWs.ws.send(JSON.stringify(msgObj))
   } else {
     wsList.forEach(o => {
       o.ws.send(msg)
