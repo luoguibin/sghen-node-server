@@ -19,7 +19,7 @@ const init = function (app) {
         ws.close()
         return
       }
-      const { userId } = data
+      const userId = +data.userId
       const oldClient = wsList.find(o => o.userId === userId)
       console.log('connect', userId, !!oldClient)
       if (oldClient) {
@@ -29,14 +29,14 @@ const init = function (app) {
         }
 
         oldClient.heartTime = timeUtil.now()
-        ws.send(JSON.stringify({ id: 11, msg: '断线重连成功' }))
+        ws.send(JSON.stringify({ id: 11, userId, msg: '断线重连成功' }))
       } else {
         wsList.push({
-          userId: +userId,
+          userId,
           heartTime: timeUtil.now(),
           ws: ws
         })
-        ws.send(JSON.stringify({ id: 10, msg: '连接成功' }))
+        ws.send(JSON.stringify({ id: 10, userId, msg: '连接成功' }))
       }
       ws.on('message', msg => {
         dealMsg(msg)
