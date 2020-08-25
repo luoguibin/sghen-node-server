@@ -21,18 +21,19 @@ const init = function (app) {
       }
       const { userId } = data
       const oldClient = wsList.find(o => o.userId === userId)
+      console.log('connect', userId, !!oldClient)
       if (oldClient) {
         oldClient.ws.close()
         oldClient.heartTime = timeUtil.newDate().getTime()
         oldClient.ws = ws
-        ws.send(JSON.stringify({ id: -1, msg: '你断线重连成功了' }))
+        ws.send(JSON.stringify({ id: -1, msg: '断线重连成功' }))
       } else {
         wsList.push({
           userId: userId,
           heartTime: timeUtil.newDate().getTime(),
           ws: ws
         })
-        ws.send(JSON.stringify({ id: -1, msg: '你连接成功了' }))
+        ws.send(JSON.stringify({ id: -1, msg: '连接成功' }))
       }
       ws.on('message', msg => {
         dealMsg(msg)
@@ -59,6 +60,7 @@ const dealMsg = function (msg) {
   const msgObj = JSON.parse(msg)
   const { id, userId } = msgObj
   if (!id || !userId) {
+    console.log('dealMsg', id, userId)
     return
   }
   if (id === -1) {
