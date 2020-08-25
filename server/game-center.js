@@ -63,6 +63,9 @@ const dealMsg = function (msg) {
   }
   if (id === -1) {
     const userWs = wsList.find(o => o.userId === userId)
+    if (!userWs) {
+      return
+    }
     userWs.heartTime = timeUtil.newDate().getTime()
   } else {
     wsList.forEach(o => {
