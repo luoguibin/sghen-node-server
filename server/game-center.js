@@ -23,9 +23,12 @@ const init = function (app) {
       const oldClient = wsList.find(o => o.userId === userId)
       console.log('connect', userId, !!oldClient)
       if (oldClient) {
-        oldClient.ws.close()
+        if (oldClient.ws !== ws) {
+          oldClient.ws.close()
+          oldClient.ws = ws
+        }
+
         oldClient.heartTime = timeUtil.now()
-        oldClient.ws = ws
         ws.send(JSON.stringify({ id: -1, msg: '断线重连成功' }))
       } else {
         wsList.push({
