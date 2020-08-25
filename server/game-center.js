@@ -8,7 +8,7 @@ const wsList = []
  */
 const init = function (app) {
   app.ws('/auth/game2d', function (ws, req) {
-    console.log('wsList.length=' + wsList.length)
+    // console.log('wsList.length=' + wsList.length)
     if (wsList.length > 10) {
       ws.close()
       return
@@ -20,21 +20,23 @@ const init = function (app) {
         return
       }
       const { userId } = data
-      const oldWs = wsList.find(o => o.userId === userId)
-      if (oldWs) {
-        oldWs.heartTime = timeUtil.newDate().getTime()
+      const oldClient = wsList.find(o => o.userId === userId)
+      if (oldClient) {
+        oldClient.ws.close()
+        oldClient.heartTime = timeUtil.newDate().getTime()
+        oldClient.ws = ws
         ws.send(JSON.stringify({ id: -1, msg: '你断线重连成功了' }))
       } else {
         wsList.push({
           userId: userId,
           heartTime: timeUtil.newDate().getTime(),
-          ws
+          ws: ws
         })
         ws.send(JSON.stringify({ id: -1, msg: '你连接成功了' }))
-        ws.on('message', function (msg) {
-          dealMsg(msg)
-        })
       }
+      ws.on('message', msg => {
+        dealMsg(msg)
+      })
     })
   })
 
@@ -59,12 +61,12 @@ const dealMsg = function (msg) {
   if (!id || !userId) {
     return
   }
-  const userWs = wsList.find(o => o.userId === userId)
   if (id === -1) {
+    const userWs = wsList.find(o => o.userId === userId)
     userWs.heartTime = timeUtil.newDate().getTime()
   } else {
     wsList.forEach(o => {
-      o.ws.send(msgObj)
+      o.ws.send(msg)
     })
   }
 }
