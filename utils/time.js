@@ -25,8 +25,13 @@ const getTime = function () {
   return `${d.year}-${d.month}-${d.date} ${d.hour}:${d.minute}:${d.second}`
 }
 
+const now = function () {
+  return newDate().getTime()
+}
+
 const timeUtil = {
   getTime,
+  now,
   newDate
 }
 

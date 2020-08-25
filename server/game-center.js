@@ -24,13 +24,13 @@ const init = function (app) {
       console.log('connect', userId, !!oldClient)
       if (oldClient) {
         oldClient.ws.close()
-        oldClient.heartTime = timeUtil.newDate().getTime()
+        oldClient.heartTime = timeUtil.now()
         oldClient.ws = ws
         ws.send(JSON.stringify({ id: -1, msg: '断线重连成功' }))
       } else {
         wsList.push({
           userId: +userId,
-          heartTime: timeUtil.newDate().getTime(),
+          heartTime: timeUtil.now(),
           ws: ws
         })
         ws.send(JSON.stringify({ id: -1, msg: '连接成功' }))
@@ -42,7 +42,7 @@ const init = function (app) {
   })
 
   setInterval(() => {
-    const nowTime = timeUtil.newDate().getTime()
+    const nowTime = timeUtil.now()
     for (let i = wsList.length - 1; i >= 0; i--) {
       if (nowTime - wsList[i].heartTime > 10000) {
         console.log(wsList[i].userId + ' ws close')
@@ -57,7 +57,7 @@ const dealMsg = function (msg = '{}') {
   const msgObj = JSON.parse(msg)
   const { id, userId } = msgObj
   if (!id || !userId) {
-    console.log('dealMsg', id, userId)
+    console.log('dealMsg() emptry params:', id, userId)
     return
   }
   if (id === -1) {
@@ -65,7 +65,7 @@ const dealMsg = function (msg = '{}') {
     if (!userWs) {
       return
     }
-    userWs.heartTime = timeUtil.newDate().getTime()
+    userWs.heartTime = timeUtil.now()
     msgObj.userCount = wsList.length
     userWs.ws.send(JSON.stringify(msgObj))
   } else {
