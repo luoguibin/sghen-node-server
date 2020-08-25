@@ -53,10 +53,7 @@ const init = function (app) {
   }, 10000)
 }
 
-const dealMsg = function (msg) {
-  if (!msg) {
-    return
-  }
+const dealMsg = function (msg = '{}') {
   const msgObj = JSON.parse(msg)
   const { id, userId } = msgObj
   if (!id || !userId) {
@@ -65,8 +62,9 @@ const dealMsg = function (msg) {
   }
   if (id === -1) {
     const userWs = wsList.find(o => o.userId === userId)
+    console.log('dealMsg heat beat', id, userId, wsList.length)
+
     if (!userWs) {
-      console.log('dealMsg', id, userId, !!userWs)
       return
     }
     userWs.heartTime = timeUtil.newDate().getTime()
