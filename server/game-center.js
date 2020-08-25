@@ -29,7 +29,7 @@ const init = function (app) {
         ws.send(JSON.stringify({ id: -1, msg: '断线重连成功' }))
       } else {
         wsList.push({
-          userId: userId,
+          userId: +userId,
           heartTime: timeUtil.newDate().getTime(),
           ws: ws
         })
@@ -61,11 +61,7 @@ const dealMsg = function (msg = '{}') {
     return
   }
   if (id === -1) {
-    console.log('dealMsg heat beat', id, userId, wsList.length)
-    const userWs = wsList.find(o => {
-      console.log(typeof o.userId, typeof userId)
-      return o.userId === userId
-    })
+    const userWs = wsList.find(o => o.userId === userId)
     if (!userWs) {
       return
     }
