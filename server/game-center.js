@@ -29,14 +29,14 @@ const init = function (app) {
         }
 
         oldClient.heartTime = timeUtil.now()
-        ws.send(JSON.stringify({ id: -1, msg: '断线重连成功' }))
+        ws.send(JSON.stringify({ id: 11, msg: '断线重连成功' }))
       } else {
         wsList.push({
           userId: +userId,
           heartTime: timeUtil.now(),
           ws: ws
         })
-        ws.send(JSON.stringify({ id: -1, msg: '连接成功' }))
+        ws.send(JSON.stringify({ id: 10, msg: '连接成功' }))
       }
       ws.on('message', msg => {
         dealMsg(msg)
