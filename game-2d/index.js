@@ -51,7 +51,7 @@ module.exports = {
       oldPlayer.ws = ws
       oldPlayer.setHeartTime()
       const scene = GLOBAL.scenes[oldPlayer.sceneId]
-      oldPlayer.sendOrder(newOrder(PLAYER.LOGIN, SYSTEM.GOD, oldPlayer.id, oldPlayer.getSelfData()))
+      oldPlayer.sendOrder(newOrder(PLAYER.RECONNECT, oldPlayer.id, PLAYER.ALL, oldPlayer.getSelfData()))
       scene.addPlayer(oldPlayer)
     } else {
       // 用户登陆，添加到全局用户图中，默认登陆到场景0
@@ -63,19 +63,9 @@ module.exports = {
     ws.on('message', msg => {
       dealMsg(msg)
     })
-    ws.on('close', e => {
-      console.log('close', e)
-      const player = GLOBAL.userMap[userId]
-      if (!player || player.isReleased) {
-        return
-      }
-      player.release()
-      const scene = GLOBAL.scenes[player.sceneId]
-      const players = scene.players
-      players.splice(players.findIndex(o => o.id === userId), 1)
-      delete GLOBAL.userMap[userId]
-
-      scene.sendOrder(newOrder(PLAYER.LOGOUT, SYSTEM.GOD, PLAYER.ALL, [userId]))
+    ws.on('close', () => {
+      // 只释放连接，由心跳机制或用户主动发送指令释放其他资源
+      console.log('close', userId)
     })
   }
 }

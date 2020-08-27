@@ -112,7 +112,6 @@ class Scene {
         // 用户掉线，释放资源
         ids.push(player.id)
         player.release()
-        player.isReleased = true
         players.splice(i, 1)
         delete GLOBAL.userMap[player.id]
       }

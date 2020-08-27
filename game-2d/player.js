@@ -35,11 +35,16 @@ class Player {
    * @param {Order} order
    */
   sendOrder (order) {
-    const orderId = order.id
-    if (orderId <= -1000 && orderId >= -1999) {
-      this.actionOrder = order
-    } else if (orderId <= -2000 && orderId >= -2999) {
-      this.skillOrder = order
+    if (!this.ws) {
+      return
+    }
+    if (order.fromId === this.id) {
+      const orderId = order.id
+      if (orderId <= -1000 && orderId >= -1999) {
+        this.actionOrder = order
+      } else if (orderId <= -2000 && orderId >= -2999) {
+        this.skillOrder = order
+      }
     }
     this.ws.send(JSON.stringify(order))
   }
