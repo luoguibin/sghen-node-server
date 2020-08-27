@@ -72,7 +72,7 @@ class Player {
    * 释放资源
    */
   release () {
-    this.ws.close()
+    this.ws && this.ws.close()
     this.ws = null
   }
 }

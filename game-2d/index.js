@@ -66,6 +66,8 @@ module.exports = {
     ws.on('close', () => {
       // 只释放连接，由心跳机制或用户主动发送指令释放其他资源
       console.log('close', userId)
+      const oldPlayer = GLOBAL.userMap[userId]
+      oldPlayer && oldPlayer.release() // 暂释放连接
     })
   }
 }
