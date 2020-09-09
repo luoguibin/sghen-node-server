@@ -78,6 +78,7 @@ function commentPeotry (peotry, user, toId, content) {
   return SGHEN.post(`${baseUrl}/comment/create`, {
     type: 1,
     typeId: peotry.id,
+    typeUserId: peotry.userId,
     content: content,
     fromId: user.id,
     toId: toId
