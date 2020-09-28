@@ -1,6 +1,6 @@
 const { GLOBAL } = require('./global')
-const { PLAYER, SYSTEM, ACTION, newOrder, SKILL } = require('./orders')
 const timeUtil = require('../utils/time')
+const Order = require('./order')
 
 class Scene {
   constructor (id, map) {
@@ -9,7 +9,7 @@ class Scene {
     this.players = []
     // 地图
     this.map = map
-    this.obstacles = []
+    this.boxes = []
   }
 
   /**
@@ -18,26 +18,19 @@ class Scene {
    */
   addPlayer (player) {
     const players = this.players
-    // 设置当前场景，并将场景内所有用户信息发送到当前用户
     player.setSceneId(this.id)
-    player.clearOrders()
-    player.sendOrder(newOrder(ACTION.ENTER_MAP, SYSTEM.GOD, player.id, {
-      players: players.map(o => {
-        return o.getPublicData()
-      }),
-      obstacles: this.obstacles,
+
+    if (!players.includes(player)) {
+      players.push(player)
+    }
+
+    this.sendOrder(Order.new(Order.ENTER_MAP, null, {
+      player: player.getPublicData(),
       map: {
         id: this.id,
         ...this.map
       }
     }))
-
-    // 当前场景用户接受新加入用户
-    const order = newOrder(ACTION.ENTER_MAP, player.id, PLAYER.ALL, player.getPublicData())
-    this.sendOrder(order, player.id)
-    if (!players.includes(player)) {
-      players.push(player)
-    }
   }
 
   /**
@@ -45,7 +38,7 @@ class Scene {
    * @param {Player} player
    */
   removePlayer (player) {
-    this.sendOrder(newOrder(ACTION.LEAVE_MAP, player.id, PLAYER.ALL))
+    this.sendOrder(Order.new(Order.ENTER_MAP))
     player.setSceneId(-1)
     const players = this.players
     const index = players.findIndex(o => o === player)
@@ -58,10 +51,6 @@ class Scene {
    * @param {Number} skipId
    */
   sendOrder (order, skipId) {
-    if (order.id === SKILL.HIT) {
-      const obstacleId = order.data.obstacleId
-      this.obstacles.splice(this.obstacles.findIndex(o => o.id === obstacleId), 1)
-    }
     this.players.forEach(o => {
       skipId !== o.id && o.sendOrder(order)
     })
@@ -81,15 +70,39 @@ class Scene {
     }
     const fromPlayer = players[index]
     switch (id) {
-      case PLAYER.HEART:
+      case Order.HEART_BEAT:
         // 处理用户心跳指令
         fromPlayer.setHeartTime()
         break
-      case PLAYER.LOGOUT:
+      case Order.MAP_PLAYER_DATAS: {
+        const newData = {
+          players: this.players.map(o => {
+            return o.getPublicData()
+          })
+        }
+        const oldData = order.data || {}
+        if (oldData.boxes) {
+          newData.boxes = this.boxes
+        }
+        fromPlayer.sendOrder(Order.new(Order.MAP_PLAYER_DATAS, null, newData))
+      }
+        break
+      case Order.PLAYER_LOGOUT:
         fromPlayer.release()
         players.splice(index, 1)
         delete GLOBAL.userMap[fromPlayer.id]
-        this.sendOrder(newOrder(PLAYER.LOGOUT, SYSTEM.GOD, PLAYER.ALL, [fromPlayer.id]))
+        this.sendOrder(Order.new(Order.PLAYER_LOGOUT, null, [fromPlayer.id]))
+        break
+      case Order.SKILL_HIT: {
+        const boxId = order.data.id
+        const index = this.boxes.findIndex(o => o.id === boxId)
+        if (index >= 0) {
+          const { value } = this.boxes.splice(index, 1)[0]
+          fromPlayer.score += value
+          order.data.score = value
+        }
+        this.sendOrder(order)
+      }
         break
       default:
         this.sendOrder(order)
@@ -118,12 +131,12 @@ class Scene {
     }
 
     // 发送集体掉线用户到当前场景
-    ids.length && this.sendOrder(newOrder(PLAYER.LOGOUT, SYSTEM.GOD, PLAYER.ALL, ids))
+    ids.length && this.sendOrder(Order.new(Order.LOGOUT, null, ids))
 
-    if (this.obstacles.length < 10) {
+    if (this.boxes.length < 10) {
       const { width, height } = this.map
       const temps = []
-      const count = this.obstacles.length < 5 ? 5 : 1
+      const count = this.boxes.length < 5 ? 5 : 1
       const nowTime = timeUtil.now()
       for (let i = 0; i < count; i++) {
         temps.push({
@@ -134,8 +147,8 @@ class Scene {
           value: (Math.random() * 8 >> 0) + 18
         })
       }
-      this.obstacles.push(...temps)
-      this.sendOrder(newOrder(SYSTEM.OBSTACLE, SYSTEM.GOD, PLAYER.ALL, temps))
+      this.boxes.push(...temps)
+      this.sendOrder(Order.new(Order.MAP_BOXES, null, temps))
     }
   }
 }

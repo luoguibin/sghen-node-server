@@ -6,10 +6,10 @@ class Player {
     this.id = id
     this.userName = name
     this.ws = ws
+
     this.heartTime = 0
+    this.score = 0
     this.sceneId = -1
-    this.actionOrder = null
-    this.skillOrder = null
 
     this.setHeartTime()
   }
@@ -38,14 +38,6 @@ class Player {
     if (!this.ws) {
       return
     }
-    if (order.fromId === this.id) {
-      const orderId = order.id
-      if (orderId <= -1000 && orderId >= -1999) {
-        this.actionOrder = order
-      } else if (orderId <= -2000 && orderId >= -2999) {
-        this.skillOrder = order
-      }
-    }
     this.ws.send(JSON.stringify(order))
   }
 
@@ -58,14 +50,8 @@ class Player {
       id: this.id,
       username: this.userName,
       sceneId: this.sceneId,
-      actionOrder: this.actionOrder,
-      skillOrder: this.skillOrder
+      score: this.score
     }
-  }
-
-  clearOrders () {
-    this.actionOrder = null
-    this.skillOrder = null
   }
 
   /**

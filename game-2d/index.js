@@ -1,7 +1,7 @@
 
 const { GLOBAL, TIME_HEART } = require('./global')
 const { maps } = require('./maps')
-const { PLAYER, newOrder, SYSTEM } = require('./orders')
+const Order = require('./order')
 const Scene = require('./scene')
 const Player = require('./player')
 const timeUtil = require('../utils/time')
@@ -19,22 +19,6 @@ setInterval(() => {
   })
 }, TIME_HEART)
 
-/**
- * 转化消息为指令，并处理
- * @param {String} msg
- */
-const dealMsg = function (msg = '{}') {
-  const msgObj = JSON.parse(msg)
-  // id做什么？fromId是谁？sceneId从哪里来？
-  const { id, fromId, sceneId } = msgObj
-  if (!id || !fromId || sceneId === undefined) {
-    console.log('dealMsg() emptry params:', id, fromId)
-    return
-  }
-  const scene = GLOBAL.scenes[sceneId]
-  scene && scene.dealOrder(newOrder(id, fromId, msgObj.toId, msgObj.data))
-}
-
 module.exports = {
   connect: function (ws, req, clientInfo) {
     const playerTotal = Object.keys(GLOBAL.userMap).length
@@ -46,22 +30,36 @@ module.exports = {
     const oldPlayer = GLOBAL.userMap[userId]
     console.log('connect', userId, !!oldPlayer)
     if (oldPlayer) {
-      // 用户重连，释放旧连接，添加新连接
       oldPlayer.release()
       oldPlayer.ws = ws
-      oldPlayer.setHeartTime()
-      const scene = GLOBAL.scenes[oldPlayer.sceneId]
-      oldPlayer.sendOrder(newOrder(PLAYER.RECONNECT, oldPlayer.id, PLAYER.ALL, oldPlayer.getSelfData()))
-      scene.addPlayer(oldPlayer)
+      oldPlayer.sendOrder(Order.new(Order.PLAYER_LOGIN, null, oldPlayer.getSelfData()))
     } else {
       // 用户登陆，添加到全局用户图中，默认登陆到场景0
       const player = new Player(userId, clientInfo.userName, ws)
-      player.sendOrder(newOrder(PLAYER.LOGIN, SYSTEM.GOD, player.id, player.getSelfData()))
+      player.sendOrder(Order.new(Order.PLAYER_LOGIN, null, player.getSelfData()))
       GLOBAL.userMap[player.id] = player
-      GLOBAL.scenes[0].addPlayer(player)
     }
+
     ws.on('message', msg => {
-      dealMsg(msg)
+      const msgObj = JSON.parse(msg)
+      const { id, fromId } = msgObj
+      if (!id || !fromId) {
+        console.log('dealMsg() emptry params:', id, fromId)
+        return
+      }
+
+      switch (id) {
+        case Order.ENTER_MAP:
+          GLOBAL.scenes[0].addPlayer(GLOBAL.userMap[userId])
+          break
+        default: {
+          const scene = GLOBAL.scenes[GLOBAL.userMap[userId].sceneId]
+          const order = Order.new(id, msgObj.toId, msgObj.data)
+          order.fromId = fromId
+          scene && scene.dealOrder(order)
+        }
+          break
+      }
     })
     ws.on('close', () => {
       // 只释放连接，由心跳机制或用户主动发送指令释放其他资源
