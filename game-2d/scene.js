@@ -131,7 +131,7 @@ class Scene {
     }
 
     // 发送集体掉线用户到当前场景
-    ids.length && this.sendOrder(Order.new(Order.LOGOUT, null, ids))
+    ids.length && this.sendOrder(Order.new(Order.PLAYER_LOGOUT, null, ids))
 
     if (this.boxes.length < 10) {
       const { width, height } = this.map
