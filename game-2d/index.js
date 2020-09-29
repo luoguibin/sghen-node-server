@@ -53,7 +53,7 @@ module.exports = {
           GLOBAL.scenes[0].addPlayer(GLOBAL.userMap[userId])
           break
         default: {
-          const scene = GLOBAL.scenes[GLOBAL.userMap[userId].sceneId]
+          const scene = GLOBAL.scenes[msgObj.sceneId || 0]
           const order = Order.new(id, msgObj.toId, msgObj.data)
           order.fromId = fromId
           scene && scene.dealOrder(order)
