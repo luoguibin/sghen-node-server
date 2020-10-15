@@ -73,6 +73,7 @@ class Scene {
       case Order.HEART_BEAT:
         // 处理用户心跳指令
         fromPlayer.setHeartTime()
+        fromPlayer.sendOrder(Order.new(Order.HEART_BEAT))
         break
       case Order.MAP_PLAYER_DATAS: {
         const newData = {
