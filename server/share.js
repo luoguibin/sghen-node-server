@@ -5,7 +5,8 @@ const timeUtil = require('../utils/time')
 
 const queryData = function (tableName, id, userId) {
   return new Promise(function (resolve, reject) {
-    db.exec('SELECT * FROM ? WHERE id=? AND user_id=?', [tableName, id, userId], function (err, results, fields) {
+    const sql = `SELECT * FROM ${tableName} WHERE id=? AND user_id=?`
+    db.exec(sql, [id, userId], function (err, results, fields) {
       if (err) {
         reject(err)
         return
