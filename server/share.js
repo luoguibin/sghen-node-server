@@ -33,14 +33,18 @@ const init = function (app) {
         return
       }
       const { fromId, shareId, shareModule, shareTime, shareDuration } = data
-      if (timeUtil.now() / 1000 - shareTime > shareDuration) {
-        res.send(GetResponseData(CONST_NUM.ERROR, '分享链接失效'))
+      const limitTime = timeUtil.now() / 1000 - shareTime
+      if (limitTime > shareDuration) {
+        res.send(GetResponseData(CONST_NUM.ERROR, '分享链接已失效'))
         return
       }
       switch (shareModule) {
         case 'resume':
           queryData(shareModule, shareId, fromId).then(data => {
-            res.send(GetResponseData(data))
+            const resp = GetResponseData(data)
+            resp.limitTime = limitTime
+            resp.shareDuration = shareDuration
+            res.send(resp)
           }).catch(error => {
             res.send(GetResponseData(CONST_NUM.ERROR, '', error))
           })
