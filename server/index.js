@@ -4,6 +4,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const apiCenter = require('./api-center')
 const gameCenter = require('./game-center')
+const shareCenter = require('./share')
 const { server: configServer } = require('../config')
 const auth = require('../core/auth')
 const { GetResponseData, CONST_NUM } = require('./base')
@@ -59,6 +60,7 @@ app.get('/', function (req, res) {
 
 // 自定义路由
 apiCenter.init(app)
+shareCenter.init(app)
 gameCenter.init(app)
 
 // 微服务路由

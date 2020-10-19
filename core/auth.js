@@ -16,6 +16,25 @@ const newToken = function (data = {}) {
   }, authConfig.SECRET_KEY)
 }
 
+/**
+ * 创建分享的token
+ * @param {Object} data
+ */
+const newShareToken = function (fromId, shareId, shareModule, shareDuration) {
+  if (!fromId || !shareId || !shareModule || !shareDuration) {
+    return ''
+  }
+  const time = Math.floor(Date.now() / 1000)
+  return JWT.sign({
+    exp: time + shareDuration,
+    shareTime: time,
+    iat: time,
+    fromId,
+    shareId,
+    shareModule
+  }, authConfig.SECRET_KEY)
+}
+
 const verify = function (token, call) {
   JWT.verify(token, authConfig.SECRET_KEY, function (err, decoded) {
     call && call(err ? null : decoded)
@@ -24,6 +43,7 @@ const verify = function (token, call) {
 
 const auth = {
   newToken,
+  newShareToken,
   verify
 }
 
