@@ -60,6 +60,7 @@ const init = function (app) {
   })
   app.post('/auth/share/create', function (req, res) {
     const { shareId, shareModule, shareDuration } = req.body || {}
+    console.log(req.body, shareDuration, +shareDuration)
     const code = auth.newShareToken(req.auth.userId, shareId, shareModule, +shareDuration)
     res.send(GetResponseData({ code, currentTime: timeUtil.getTime(), shareDuration }))
   })
