@@ -33,8 +33,8 @@ const init = function (app) {
         return
       }
       const { fromId, shareId, shareModule, shareTime, shareDuration } = data
-      const limitTime = timeUtil.now() / 1000 - shareTime
-      if (limitTime > shareDuration) {
+      const limitTime = shareDuration - (timeUtil.now() - shareTime) / 1000
+      if (limitTime < 0) {
         res.send(GetResponseData(CONST_NUM.ERROR, '分享链接已失效'))
         return
       }
@@ -44,6 +44,8 @@ const init = function (app) {
             const resp = GetResponseData(data)
             resp.limitTime = limitTime
             resp.shareDuration = shareDuration
+            resp.shareTime = shareTime
+            resp.currentTime = timeUtil.now()
             res.send(resp)
           }).catch(error => {
             res.send(GetResponseData(CONST_NUM.ERROR, '', error))
@@ -57,7 +59,7 @@ const init = function (app) {
   })
   app.post('/auth/share/create', function (req, res) {
     const { shareId, shareModule, shareDuration } = req.body || {}
-    const code = auth.newShareToken(req.auth.userId, shareId, shareModule, shareDuration)
+    const code = auth.newShareToken(req.auth.userId, shareId, shareModule, +shareDuration)
     res.send(GetResponseData({ code, currentTime: timeUtil.getTime() }))
   })
 }
