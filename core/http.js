@@ -1,6 +1,6 @@
 const request = require('request')
 
-exports.get = function (url, params) {
+exports.get = function (url, params, isOriginResponse) {
   return new Promise(function (resolve, reject) {
     request.get({
       url,
@@ -14,6 +14,10 @@ exports.get = function (url, params) {
         reject(body)
         return
       }
+      if (isOriginResponse) {
+        resolve(body)
+        return
+      }
       try {
         const data = JSON.parse(body)
         resolve(data)
@@ -24,7 +28,7 @@ exports.get = function (url, params) {
   })
 }
 
-exports.post = function (url, data, headers, params) {
+exports.post = function (url, data, headers, params, isOriginResponse) {
   return new Promise(function (resolve, reject) {
     request.post({
       url,
@@ -42,6 +46,10 @@ exports.post = function (url, data, headers, params) {
       }
       if (response.statusCode !== 200) {
         reject(body)
+        return
+      }
+      if (isOriginResponse) {
+        resolve(body)
         return
       }
       try {

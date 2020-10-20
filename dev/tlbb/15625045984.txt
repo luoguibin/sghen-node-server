@@ -1,0 +1,261 @@
+<!DOCTYPE html><html><head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="keywords" content="天龙,新天龙,天龙八部,新天龙八部,天龙八部3,tl,tlbb,tl3,xtl,网络游戏,网游,武侠,浪漫武侠,武侠游戏,金庸,MMO,天龙八部OL,萧峰,段誉,虚竹,王语嫣,天龙八部钟汉良版,天龙八部黄日华版,8周年,八周年,周年庆,全民代言,纵情四海">
+		<meta name="description" content="《新天龙八部》十三周年，全新副本观山海即将上线，画面颠覆性升级！唯美山河场景、国韵音乐大作、全新副本玩法登场！海量周年福利上线领取。">
+		<meta name="author" content="Design:CP; Web Layout:CP;">
+		<title>重九秋意浓-《新天龙八部》官方网站</title>
+		<link type="image/x-icon" href="//xtl.changyou.com/favicon.ico" rel="icon">
+		<link type="image/x-icon" href="//xtl.changyou.com/favicon.ico" rel="shortcut icon">
+		<link type="text/css" rel="stylesheet" href="/act/all/css/reset.css">
+		<link type="text/css" rel="stylesheet" href="/act/xtl/chongyang/20200915/pc/css/style.css">
+		<script src="https://hm.baidu.com/hm.js?1486dbdff2a451464c21a0a1bc2130e6"></script><script async="" src="//www.google-analytics.com/analytics.js"></script><script>
+			(function() {
+				if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+					var a = document.referrer,
+						b = {
+							"baidu.com": "seo_baidu",
+							"sogou.com": "seo_sogou",
+							"sm.cn": "seo_sm",
+							"so.com": "seo_360",
+							"bing.com": "seo_bing",
+							"google.com": "seo_google"
+						},
+						c;
+					for (c in b) {
+						if (-1 != a.indexOf(c)) {
+							a = b[c];
+							if (window.sessionStorage) {
+								sessionStorage.setItem("channel", a)
+							} else {
+								var d = d || 0,
+									b = "";
+								0 != d && (b = new Date, b.setTime(b.getTime() + 1000 * d), b = "; expires=" + b.toGMTString());
+								document.cookie = "channel=" + escape(a) + b + "; path=/"
+							}
+							break
+						}
+					}
+					window.location.href = "../m/index.shtml" + location.search
+				};
+			})();
+		</script>
+	<script type="text/javascript" src="//www.changyou.com/js/cyou_public.js" id="cyou_public_js" options="{	name:'xtl', skins:[0,'white',0]}"></script><style type="text/css" id="cyou_public_css">body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,p {padding:0;margin:0;}fieldset,img {border:0;}ol,ul{list-style:none; }:focus {outline:0;}                 #cyou_top_flash{display:none;position:absolute;left:0;top:55px;z-index:9999}                #cyou_top_close{position:absolute;display:block;width:59px;height:28px;cursor:pointer;top:20px;left:50%;margin-left:400px;background:url(http://i0.cy.com/www/public/nav/v3.7/close.png) no-repeat;}                .cyou_top_animate_elem { -webkit-animation-delay: .2s; -moz-animation-delay: .2s; -ms-animation-delay: .2s; -o-animation-delay: .2s; animation-delay: .2s; -webkit-animation-duration: 1s; -moz-animation-duration: 1s; -ms-animation-duration: 1s; -o-animation-duration: 1s; animation-duration: 1s; -webkit-animation-fill-mode: both; -moz-animation-fill-mode: both; -ms-animation-fill-mode: both; -o-animation-fill-mode: both; animation-fill-mode: both; -webkit-animation-timing-function: ease; -moz-animation-timing-function: ease; -ms-animation-timing-function: ease; -o-animation-timing-function: ease; animation-timing-function: ease; -webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; -ms-backface-visibility: hidden; -o-backface-visibility: hidden; backface-visibility: hidden; }                 .cyou_top_tipsbox b,                 .cyou_top_categroylist a,                 .cyou_top_webgame,                 .cyou_top_li_icon,                 .cyou_top_gm_select_icon{ background-image:url(http://i0.cy.com/www/public/nav/v2.2/cyou_sprite.png); background-repeat:no-repeat; }                 #cyou_top { position: relative; width: 100%; height: 55px; background: url(http://i0.cy.com/www/public/nav/v1.8/nav_bg.png) no-repeat center top; cursor: default; z-index: 99; min-width: 980px; }                 #cyou_top a,                 #cyou_bottom a { text-decoration: none; overflow:inherit; }                 #cyou_top_main {width: 980px; height: 50px; margin: 0 auto; color: #4a4a4a; font-family:"宋体"; font-size:12px; }                 .cyou_top_logo,                 .cyou_top_nav,                 .cyou_top_ads { position: relative; z-index: 2; cursor:pointer}                 .cyou_top_logo a { display: block; float: left; width: 115px; height: 36px; text-indent: -9999em; }                 .cyou_top_logo,                 .cyou_top_ads { float: left; width: auto; height:50px; }                 .cyou_top_logo { width: auto; height:36px; margin-top:6px; padding-right: 13px; border-right: 1px solid #CECECE; }                 .cyou_top_ads { position: static; width: 240px; height: 50px; padding-left: 30px; text-align: center; z-index: 1; overflow: hidden; }                 .cyou_top_ads a { display: block; height: 50px; margin: 0 auto; line-height: 0; font-size: 0; }                 .cyou_top_ads_big { display: none; position: absolute;margin-left:-110px;top:0;z-index:3;}                 .cyou_top_nav { float: right; height: 41px; }                 .cyou_top_nav_li { display: block; position: relative; float: left; width: auto; padding:0 10px; height: 50px; line-height: 50px; text-align: center; }                 .cyou_pingtai_rig_bor_reg{border-right: solid 1px #dbdbdb;}                 #cyou_top_main .cyou_top_nav_li_logined{ width:auto; line-height:50px; border-right:none; display:none;}                 .cyou_top_nav_li a{ font-family:"宋体"; font-size:13px;}                 #cyou_top_main .cyou_top_nav_li_logined a{background-color:#666; color:#fff; padding: 3px 5px;}                 #cyou_top_main .cyou_top_nav_li_logined a:hover{ color:#fff;}                 .cyou_top_pingtai { width: auto; padding: 0 10px; }                 .cyou_top_pingtai a { line-height: 40px; }                 .cyou_top_reg { color:8dc420;}                 .cyou_top_arrow{ position:absolute;background:#f2f2f2; width:112px; height:6px; line-height:6px; right:-1px; top:-6px; font-size:0px; border-right:solid 1px #bbb;border-left:solid 1px #bbb;}                 .cyou_top_game_list .cyou_top_arrow{top:-5px; z-index:10;}                 #cyou_top_service .cyou_top_lists{ background:#fcfcfc;}                 .cyou_top_tipsbox { _display: inline; float: left; width: 100%; padding: 0; line-height: 0; font-size: 0; }                 .cyou_top_tipsbox b { display: block; background-position: -116px -125px; line-height: 50px; font-size: 12px; font-weight: normal; cursor: pointer; }                 .cyou_top_tipsbox:hover b,                 .cyou_top_tipsbox_clicked b { background-position: -116px -64px; background-color:#f2f2f2; color: #681683; }                 #cyou_top_tips_gm .cyou_top_tipsbox:hover b,                 #cyou_top_tips_gm .cyou_top_tipsbox_clicked b { background-position: -148px -64px; background-color:#f2f2f2; color: #681683; }                 #cyou_top_tips_gm{width:82px;}                 #cyou_top_tips_gm .cyou_top_tipsbox b{background-position: -148px -125px;}                 #cyou_top_gm_select .cyou_top_arrow{width:82px;}                 #cyou_top_gm_select .cyou_top_lists a{display: block; width:82px; padding-left:12px; height:30px; text-align:left; line-height:30px; background:#f2f2f2; }                 #cyou_top_gm_select .cyou_top_lists a:hover .cyou_top_gm_select_icon { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); transform: rotate(360deg); }                 .cyou_top_gm_select_icon {display: inline-block;float: left;height: 18px;margin: 6px 3px 0 0;  *zoom:1; transition: transform 0.4s ease-out 0s; width: 18px;}                 #cyou_top_gm_select .cyou_top_gm_icon_a{width:18px; height:18px; float:left; background-position:0 -129px; }                 #cyou_top_gm_select .cyou_top_gm_icon_b{width:18px; height:18px; float:left;  background-position:0 -148px; }                 #cyou_top_gm_select .cyou_top_gm_icon_c{width:18px; height:18px; float:left;  background-position:0 -167px; }                #cyou_top_gm_select .cyou_top_lists .cyou_top_gm_white{background:#fff;border-top:solid 1px #bbbbbb;}                 .cyou_top_listbox h2 { display: block; height: 32px; border-bottom: 1px solid #DBDBDB; border-right: 1px solid #DBDBDB; text-indent:47px; background:#f2f2f2 url(http://i0.cy.com/www/public/nav/v1.8/service_tit.png) no-repeat;color: #4A4A4A; font: bold 12px/32px Tahoma,Geneva,sans-serif; text-align: left;  }                 .cyou_top_lists { display: none; position: absolute; top: 50px; right: -1px; width: auto; background: #F2F2F2; border:solid 1px #bbbbbb;}                 #cyou_top_games .cyou_top_lists{_width:740px;_zoom:1}                 #cyou_top_service .cyou_top_lists { right: -1px; width: auto; }                  .cyou_top_categroylist a { display: block; float: left; width: 112px; height: 42px; line-height: 41px; color: #4A4A4A; font-size: 12px; text-align: left; text-indent: 15px; cursor: pointer; -webkit-transition: all .3s ease-out; -moz-transition: all .3s ease-out; -ms-transition: all .3s ease-out; -o-transition: all .3s ease-out; transition: all .3s ease-out; }                  #cyou_top_main .cyou_top_glist a.imp { color: #eb5122; }                  #cyou_top_main .cyou_top_glist a:hover,                 #cyou_top_main .cyou_top_categroylist a:hover,                  #cyou_top_main .cyou_top_lists_wrap a.cyou_top_games_icon_clicked { color: #681683; }                 #cyou_top_service .cyou_top_listbox { width: 328px; *zoom: 1; overflow: hidden; }                 #cyou_top_service .cyou_top_categroylist { float: left; width: 336px; }                 #cyou_top_service .cyou_service_tit0{ background-position:22px 7px;}                 #cyou_top_service .cyou_service_tit1{ background-position:22px -33px;}                 #cyou_top_service .cyou_service_tit2{ background-position:22px -73px;}                 #cyou_top_service .cyou_service_tit3{ background-position:22px -113px;}                 #cyou_top_service .cyou_service_tit4{ background-position:22px -153px;}                 #cyou_top_service .cyou_top_categroylist a { background-position:0px -60px; height:34px; line-height:34px;}                 #cyou_top_service .cyou_top_categroylist .cyou_service_cate_last a{ height:33px; line-height:33px;}                 .cyou_top_tips { width: 112px; padding:0px; border:1px solid #E1E1E1; border-bottom:none; border-top:none; margin-left:-1px;}                 .active_bor{border-color:#bbb; z-index:10;}                 .cyou_top_li_icon { display: inline-block; width: 24px; height: 24px; margin: 11px 5px 0 0; *zoom:1; float:left; -webkit-transition: -webkit-transform .4s ease-out; -moz-transition: -moz-transform .4s ease-out; transition: transform .4s ease-out; }                 .cyou_top_nav_li a:hover .cyou_top_li_icon { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); transform: rotate(360deg); }                 .cyou_top_reg_icon { background-position: -139px 0; }                 .cyou_top_pay_icon { background-position: -189px 0; }                 .cyou_top_jia_icon { background-position: 0 -104px; }                 .cyou_top_gm_icon { background-position: -164px 0;}                 .cyou_top_login_icon { background-position: -114px 0; }                 .cyou_top_dropshow {position: absolute; right: 4px;top: 5px;width: 867px;height: 110px;border-bottom: solid 1px #bbb;   background: #BBBBBB url(http://i0.cy.com/www/pic/2020/05/06/top_nav.jpg) 1px 1px no-repeat;}                 .cyou_top_gameint { position: absolute; left: 20px; top: 95px; width: 200px; line-height: 22px; color: #ffffff; font-size: 12px; text-align: left; display:none; }                 .cyou_top_webgame { display: block; position: absolute; bottom: -27px; right: -1px; width: 335px; height: 25px; border:solid 1px #bbb; line-height: 25px; color: #7256ff; font-size: 12px; text-align: center; text-indent: 15px; cursor: pointer; background-position:-130px -32px; background:none; background-color:#f2f2f2; font-weight:bold;}                 .cyou_top_webgame:hover { color: #676868; }                 #cyou_top_main a { color: #333333; }                 #cyou_top_main .cyou_top_webgame {color:#7256ff;}                 #cyou_top_main a:hover { color: #681683; }                 #cyou_top_main .cyou_top_reg a:hover { color: #681683; }                 #cyou_top_main .cyou_top_recharge a:hover { color: #681683; }                 #cyou_top_main .cyou_top_gm a:hover { color: #681683; }                 .cyou_top_logo a, .cyou_bottom_left a{background-image:url(http://i1.cy.com/www/public/nav/v2.3/logo_white.png?v01); background-repeat:no-repeat;}                 #cyou_bottom{width:100%;min-width:980px;height:80px;padding:10px 0;zoom:1;}                 #cyou_bottom a{text-decoration:none;}                 .cyou_bottom_wraper{border:none;border-collapse:collapse;padding:0;margin:0 auto;}                 .cyou_bottom_wraper td{height:77px;vertical-align:middle;}                 .cyou_bottom_left{text-align:right;}                 .cyou_bottom_left a, .cyou_bottom_right a{height:52px;display:inline-block;zoom:1;text-align:left;}                 .cyou_bottom_cont{text-align:left;padding:0 10px;}                 .cyou_bottom_cont p{white-space:nowrap;}                 .cyou_bottom_cont p .uppercase{ text-transform:uppercase; font-size:11px; -webkit-text-size-adjust:none;}                 .cyou_bottom_left, .cyou_bottom_right{padding:0 5px;}                 #cyou_bottom{ background:#f0f0f0 url(http://i0.cy.com/www/public/nav/v1.8/nav_bg.png) no-repeat center -55px; padding-top:20px;}                 #cyou_bottom a{ color:#8e8e8e;}                 #cyou_bottom a:hover{ color:#484848;}                 #cyou_bottom .highlight{ color:#484848;}                 #cyou_bottom, .cyou_bottom_cont p{ font:normal 12px/22px Tahoma, Geneva, sans-serif; color:#8e8e8e;}                 .cyou_bottom_cont p{ padding-left:1px;}                 .cyou_bottom_cont p .in{ display:inline-block; *display:inline; *zoom:1;}                 .cyou_bottom_cont p .in img{ float:left; margin-right:4px}                 .cyou_bottom_right a{ background-image:url(http://i1.cy.com/www/public/nav/cyou_copyright_sprite.png);background-repeat:no-repeat;height:48px;}                 .cyou_top_game_list {display: none; width: 876px;height: 382px;position: absolute;right: 0px;top: 50px;}                 .cyou_top_lists_wrap {position: absolute;top: 0px;right: 0px;width: 638px;height: 255px;border: solid 1px #dbdbdb;border-left: none;background: #fff;}                 .tyou_top_gtype {width: 638px;height: 382px;position: relative;}                 .cyou_top_tynum {width: 290px;position: absolute;}                 .cyou_top_type1 {top: 2px; left: 11px;}                 .cyou_top_type2 {top: 2px; left: 335px;}                 .cyou_top_type3 {top: 97px;left: 10px; }                 .cyou_top_type4 {top: 97px;left: 335px; }                 .cyou_top_type5 {width: 616px;top: 170px;left: 10px;}                 .cyou_top_ty_tit {line-height: 30px;font-size: 15px;text-align: left;color: #aaa;font-weight: bold;border-bottom: dashed 1px #d6d6d6;}                 .cyou_top_glist {padding-top: 4px;height: 50px;position: relative; text-align: left;}                 .cyou_top_glist dd {display: inline; *zoom: 1; position:relative; margin-left:1px;vertical-align: top; height: 24px; font-size: 12px;line-height: 24px;color: #333333;padding: 0px 6px 0px 0px;}                 .cyou_top_glist dd a{color: #333333;padding-right:2px;}                 .cyou_top_glist dd a:hover{color: #e47911;text-decoration: underline;}                 .tyou_top_three_ad{left: 0px; top: 0px; position: absolute; border:solid 1px #d6d6d6; border-top: none;}                 .tyou_top_three_ad img{vertical-align: top;}                 .tyou_top_three_ad a{display: block; border-top: solid 1px #d6d6d6;}                 #cyou_top_main .cyou_top_glist a{}                 .cyou_top_change{position: absolute; left: 0px; top: 257px; width: 874px; height: 124px; border:solid 1px #ccc; border-top: none; background: #fff;}                 .cyou_top_rec{position: absolute; width: 876px; bottom: -1px; left: -1px; height: 5px; font-size: 0px; line-height: 0px; background: #ff6300;}                 .cyou_top_hot, .cyou_top_new{position: absolute; left: 0px; top: 0px; width: 41px; height: 41px;}                 .cyou_top_hot{z-index: 2; background: url(http://i0.cy.com/www/public/nav/v2.4/ico_hot_p24.png);_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://i0.cy.com/www/public/nav/v2.4/ico_hot_p24.png",sizingMethod="scale"); }                 .cyou_top_new{z-index: 2; background: url(http://i0.cy.com/www/public/nav/v2.4/ico_new_p24.png);_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://i0.cy.com/www/public/nav/v2.4/ico_new_p24.png",sizingMethod="scale"); }                 .cyou_top_th_ad_item{width: 236px; height: 128px; position: relative;}                 .cyou_top_gm_type1, .cyou_top_gm_type2{position: absolute; right: 6px; bottom: 6px;}                 .cyou_top_gm_type1{width: 16px; height: 16px; background: url(http://i0.cy.com/www/public/nav/v2.4/icon_pc.png);}                 .cyou_top_gm_type2{width: 16px; height: 18px; background: url(http://i0.cy.com/www/public/nav/v2.4/icon_mob.png);}                 .cyou_top_glist em{width: 10px; height: 11px; line-height: 0px; overflow: hidden; display: inline-block; *display: inline; zoom:1; margin-right: 1px; margin-bottom: 6px;*vertical-align:top;}                 .cyou_top_glist .cyou_top_b{background: url(http://i0.cy.com/www/public/nav/v2.4/icon_b.png);}                 .cyou_top_glist .cyou_top_h{background: url(http://i0.cy.com/www/public/nav/v2.4/icon_h.png);}                 .cyou_top_glist .cyou_top_n{background: url(http://i0.cy.com/www/public/nav/v2.4/icon_n.png);}</style><link type="text/css" rel="stylesheet" href="//www.changyou.com/css/cyou_public/cyou_top_animate.css"></head>
+	<body><div id="cyou_top"><div id="cyou_top_main"><div class="cyou_top_logo"><a style="width:90px;background-position:0 -5px;" href="http://www.changyou.com/index.shtml" target="_blank" title="畅游"></a></div><ul class="cyou_top_nav"><li class="cyou_top_reg cyou_top_nav_li"><a href="http://zhuce.changyou.com/regInit.act?gameType=xtl" target="_blank"><span class="cyou_top_li_icon cyou_top_reg_icon"></span>注册</a></li><li class="cyou_top_recharge cyou_top_nav_li"><a href="http://chong.changyou.com/common/skip2game.do?gameType=3" target="_blank"><span class="cyou_top_li_icon cyou_top_pay_icon"></span>充值</a></li><li class="cyou_top_jia cyou_top_nav_li"><a href="http://jia.changyou.com/" target="_blank"><span class="cyou_top_li_icon cyou_top_jia_icon"></span>畅游+</a></li><li class="cyou_top_tips cyou_top_nav_li" id="cyou_top_tips_gm"><div id="cyou_top_gm_select" class="cyou_top_tipsbox">                <b>客服</b>                 <div class="cyou_top_lists">                    <div class="cyou_top_arrow"></div><a href="http://gm.changyou.com/" target="_blank"><span class="cyou_top_gm_select_icon cyou_top_gm_icon_a"></span>在线客服</a>                    <a href="http://bang.changyou.com/" target="_blank" class="cyou_top_gm_white"><span class="cyou_top_gm_select_icon cyou_top_gm_icon_b"></span>手机客服</a>                    <a href="http://vip.changyou.com/" target="_blank" class="cyou_top_gm_white"><span class="cyou_top_gm_select_icon cyou_top_gm_icon_c"></span>会员网站</a></div>            </div></li><li class="cyou_top_tips cyou_top_nav_li"><div id="cyou_top_service" class="cyou_top_tipsbox">                 <b>畅游全服务</b>                 <div class="cyou_top_lists">                     <div class="cyou_top_arrow"></div>                     <div class="cyou_top_listbox"><div class="cyou_top_categroylist">                         <h2 class="cyou_service_tit0">我的通行证</h2>                         <ul class=""><li><a href="http://member.changyou.com/common/codeAdmin.do" target="_blank">修改密码</a></li><li><a href="http://member.changyou.com/info/userinfo.do?pageTo=SSZ" target="_blank">实名认证</a></li><li><a href="http://member.changyou.com/myphone/getMyphone.do" target="_blank">认证手机</a></li></ul>                     </div><div class="cyou_top_categroylist">                         <h2 class="cyou_service_tit1">安全中心</h2>                         <ul class=""><li><a href="http://protect.changyou.com/card/showBindStatus.do" target="_blank">密保卡</a></li><li><a href="http://protect.changyou.com/passpod/passpodAction.do" target="_blank">贴身密保</a></li><li><a href="http://protect.changyou.com/faq/secure-faq.jsp" target="_blank">安全学堂</a></li></ul>                     </div><div class="cyou_top_categroylist">                         <h2 class="cyou_service_tit2">充值中心</h2>                         <ul class=""><li><a href="http://chong.changyou.com/" target="_blank">充值中心</a></li><li><a href="http://chong.changyou.com/common/wrapCyb.do?type=106" target="_blank">在线购卡</a></li><li><a href="http://chong.changyou.com/common/wrapCyb.do?type=2" target="_blank">查询充值记录</a></li></ul>                     </div><div class="cyou_top_categroylist">                         <h2 class="cyou_service_tit3">客服中心</h2>                         <ul class="cyou_service_cate_last"><li><a href="http://gm.changyou.com" target="_blank">客服中心</a></li><li><a href="http://gm.changyou.com/html/faq/description_1.html" target="_blank">被盗找回</a></li><li><a href="http://bang.changyou.com/" target="_blank">手机客服</a></li></ul>                     </div></div>                 </div>             </div></li><li class="cyou_top_tips cyou_top_nav_li"><div id="cyou_top_games" class="cyou_top_tipsbox">                 <b>畅游全游戏</b>                 <div class="cyou_top_game_list">                    <div class="cyou_top_arrow"></div>                    <div class="cyou_top_lists_wrap" id="cyou_top_games_link">                        <div class="tyou_top_gtype"><div class="cyou_top_tynum cyou_top_type1"><div class="cyou_top_ty_tit">奇幻游戏</div>                                <dl class="cyou_top_glist"><dd style="display:inline-block;"><a class="imp cyou_top_games_icon_clicked" href="http://ffo.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/www/public/nav/v2.4/20141107/ffo_03.jpg" target="_blank">幻想神域</a></dd></dl></div><div class="cyou_top_tynum cyou_top_type2"><div class="cyou_top_ty_tit">武侠游戏</div>                                <dl class="cyou_top_glist"><dd style="display:inline-block;"><a class="imp" href="http://xtl.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/www/pic/2020/05/06/top_nav.jpg" target="_blank">新天龙八部</a><em class="cyou_top_h"></em></dd><dd style="display:inline-block;"><a href="http://xsh.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/www/pic/2020/03/23/shuihu.jpg" target="_blank">大话水浒</a><em class="cyou_top_h"></em></dd><dd style="display:inline-block;"><a href="http://dj.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/www/pic/2020/03/23/daojian.jpg" target="_blank">刀剑Online</a><em class="cyou_top_h"></em></dd><dd style="display:inline-block;"><a href="http://ldj.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/www/public/nav/v2.4/20141107/ldj_03.jpg" target="_blank">鹿鼎记</a></dd><dd style="display:inline-block;"><a href="http://ty.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/www/public/nav/v2.4/20141107/ty_03.jpg" target="_blank">桃园2.0</a></dd><dd style="display:inline-block;"><a href="http://jd.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/www/public/nav/v2.4/20141107/jd_03.jpg" target="_blank">九鼎传说</a></dd></dl></div><div class="cyou_top_tynum cyou_top_type3"><div class="cyou_top_ty_tit">竞技游戏</div>                                <dl class="cyou_top_glist"><dd style="display:inline-block;"><a href="http://wf.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/www/public/nav/v4.0/wfcb.jpg" target="_blank">星际战甲</a></dd><dd style="display:inline-block;"><a href="http://hz.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/www/public/nav/v2.4/20141107/hz_03.jpg" target="_blank">海战世界</a></dd></dl></div><div class="cyou_top_tynum cyou_top_type4"><div class="cyou_top_ty_tit">&nbsp;</div>                                <dl class="cyou_top_glist"></dl></div><div class="cyou_top_tynum cyou_top_type5"><div class="cyou_top_ty_tit">手机游戏</div>                                <dl class="cyou_top_glist"><dd style="display:inline-block;"><a class="imp" href="http://djdsz.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/djdsz/pic/20180815/all_a2.jpg" target="_blank">刀剑斗神传</a><em class="cyou_top_n"></em><em class="cyou_top_b"></em></dd><dd style="display:inline-block;"><a class="imp" href="http://tl3d.changyou.com/" data-desc="" data-thumb="http://i1.cy.com/tl3d/pic/2020/0909/tl3d.jpg" target="_blank">天龙3D</a><em class="cyou_top_h"></em></dd><dd style="display:inline-block;"><a href="http://ldjsy.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/ldjsy/pic/2019/07/22/all_a2.jpg" target="_blank">鹿鼎记手游</a><em class="cyou_top_n"></em></dd><dd style="display:inline-block;"><a href="http://kzgj.cy.com/" data-desc="" data-thumb="http://i0.cy.com/kzgj/pic/2019/0911/all_a2.jpg" target="_blank">空之轨迹手游</a><em class="cyou_top_n"></em></dd><dd style="display:inline-block;"><a href="http://xj5.changyou.com/" data-desc="" data-thumb="http://i0.cy.com/xj5/pic/2020/06/02/all_a2.jpg" target="_blank">仙剑奇侠传5手游</a></dd></dl></div></div>                    </div>                    <div class="tyou_top_three_ad" id="tyou_top_three_ad"><div class="cyou_top_th_ad_item"><em class="cyou_top_hot"></em><span class="cyou_top_gm_type1"></span><a href="http://tl.changyou.com/" data-thumb="http://i0.cy.com/www/pic/2020/05/06/top_nav.jpg" target="_blank"><img src="http://i0.cy.com/www/pic/2020/05/06/xtl_ad_1.jpg" title="江湖同贺12周年"></a></div><div class="cyou_top_th_ad_item"><em class="cyou_top_new"></em><span class="cyou_top_gm_type2"></span><a href="http://kzgj.cy.com/" data-thumb="http://i0.cy.com/djdsz/pic/20180815/all_a2.jpg" target="_blank"><img src="http://i1.cy.com/kzgj/pic/2019/0911/logo.jpg" title="《空之轨迹》官网"></a></div></div>                    <div class="cyou_top_change">                        <div class="cyou_top_dropshow" data-anim="fadeInRight" id="cyou_top_dropshow">                            <div class="cyou_top_gameint"></div>                        </div>                        <div class="cyou_top_rec"></div>                    </div>            </div></div></li></ul></div></div>
+		<h1 class="none">重九秋意浓</h1>
+		<div class="wrap">
+			<div class="xtl_logo_lk">
+				<a href="http://tl.changyou.com/main.shtml" title="《新天龙八部》官方网站" target="_blank"></a>
+			</div>
+			<div class="xtl_logo_bg"></div>
+			<div class="head pr">
+				<div id="leaves">
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+					<i></i>
+				</div>
+				<div class="bar">
+					<div class="slobox pr">
+						<p class="slogan pa">重九秋意浓</p>
+						<p class="ptxt com pa">畅玩宋代重阳，领菩提心经、全新武器：朱黛重九枝等饕餮大礼！</p>
+					</div>
+					<div class="navbox pr">
+						<div class="nav0 pa"><a href="#cont1" title="重阳食糕" class="com">重阳食糕<span>可领菩提心经</span></a></div>
+						<div class="nav1 pa"><a href="#cont2" title="登高折萸" class="com">登高折萸</a></div>
+						<div class="nav2 pa"><a href="#cont3" title="台榭宴饮" class="com">台榭宴饮</a></div>
+					</div>
+					<div class="dl_box">
+						<p class="login_box" id="loginBox" style="display: none;">
+							你好，请 <a href="javascript:;" class="login" id="login">【登录】</a>
+						</p>
+						<p class="logout_box" id="logoutBox" style="display: block;">
+							<i class="user_name" id="userName">156***984</i>
+							<a href="javascript:;" class="logout" id="logout">【注销】</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="cont1" id="cont1">
+				<div class="bar">
+					<h2 class="none">重阳食糕 步步升高</h2>
+					<p class="tip">宋代，重阳节一定要吃花糕，花糕极为讲究，《梦梁录》有载：此日都人店肆，<br>以糖、面蒸糕，上以猪羊肉、鸭子为丝簇，插小彩旗，各日重阳糕。<br>“糕”与“高”谐音，吃糕更是为了取吉祥之寓意！</p>
+					<div class="signbox pr">
+						<div class="daybox pa">
+							<p>第1块</p>
+							<strong>状元糕<span>逢考必过</span></strong><img src="/act/xtl/chongyang/20200915/pc/img/icon1.png">
+						</div>
+						<div class="daybox daybox1 pa">
+							<p>第2块</p>
+							<strong>太阳糕<span>祈求吉祥</span></strong><img src="/act/xtl/chongyang/20200915/pc/img/icon2.png">
+						</div>
+						<div class="daybox daybox2 pa wkq">
+							<p>第3块</p>
+							<strong>等待开启</strong>
+						</div>
+						<!--可开启，请添加类名“kkq”-->
+						<div class="daybox daybox3 pa wkq">
+							<p>第4块</p>
+							<strong>等待开启</strong>
+						</div>
+						<div class="daybox daybox4 pa wkq">
+							<p>第5块</p>
+							<strong>等待开启</strong>
+						</div>
+						<div class="daybox daybox5 pa wkq">
+							<p>第6块</p>
+							<strong>等待开启</strong>
+						</div>
+						<!--未开启，请添加类名“wkq”-->
+						<div class="daybox daybox6 pa wkq">
+							<p>第7块</p>
+							<strong>等待开启</strong>
+						</div>
+						<!--已开启，添加类名“ ykq ”  已结束，请添加类名“ yjs ”-->
+						<a href="javascript:;" id="signBtn" class="btn kqbtn pa ykq" title="开启今日重阳糕">开启今日重阳糕</a>
+						<div class="getbox pa">
+							<h3 class="none">活动期间，开启全部重阳糕可领取菩提心经</h3>
+							<p class="yleiji">已累计<span id="sCount">2</span>块</p>
+							<p class="jiazhi">菩提心经<br>价值<strong>3888</strong>元宝<span>(11月1日起可使用)</span></p>
+							<!--已领取，请添加类名“ ylq ”-->
+							<a href="javascript:;" class="btn getbtn" id="getPrizeBtn" title="立即领取">立即领取</a>
+							<p class="tips">请于10月31日24点前领取</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cont2" id="cont2">
+				<div class="bar">
+					<h2 class="none">登高折萸 除瘟祈福</h2>
+					<div class="lebar">
+						<p>九月九的重阳佳节，宋代有登高祈福的习俗，而茱萸，其味香烈，有逐风邪、治寒热、利五脏等功用，古人把茱萸作为驱邪的神物，称“辟邪翁”每逢重阳节人人都要佩戴。</p>
+						<img src="/act/xtl/chongyang/20200915/pc/img/hd.png" width="574" height="345" alt="登高折萸 除瘟祈福">
+					</div>
+					<div class="ribar">
+						<h2 class="com">活动玩法</h2>
+						<p>等级达到30级的少侠，每日可组成3-6人队伍，由队长带领前往苏州（289，222）朱重九处领取金枝茱萸参与活动。</p>
+						<p>队长领取金枝茱萸成功后，带领队员前往苏州任意一处重阳祈福树旁，使用金枝茱萸将其种下，队伍内所有少侠点击金枝茱萸，点击界面中全部茱萸果实即可进行采撷，完成活动。当所有少侠皆完成采撷或超过1分钟时限，队伍内少侠可点击金枝茱萸领取奖励。</p>
+						<h2 class="com hdjl">活动奖励</h2>
+						<p>完成当日采撷，可获得以下奖励中随机获得一种：<span class="cored">金蚕丝、缀梦灵石、虹耀石、至尊强化精华、幻魂丹、3级秘银、3级棉布</span>。</p>
+						<p>并根据队伍内完成采撷侠士人数不同获得不同数量的<span class="cored">红芳御果</span>，3人及以下可得12个、4人可得14个、5人可得16个、6人可得18个。</p>
+						<p>当日采撷完成，即为登高折萸1次，累计登高折萸8次后可在苏州（289，222）朱重九处领取金枝祥瑞赏，包括：<span class="cored">称号：紫蒂红芳欢重九、纪念道具：登高折萸图</span>及<span class="cored">两相欢礼盒</span>。</p>
+						<p>两相欢礼盒内含时装：倾国两相欢（15天）以及洛阳锦。</p>
+						<p>11月2日0时至11月4日24时，等级达到30级的少侠可花费150元宝补领两相欢礼盒 。</p>
+						<p class="tishi"><span class="cored">●&nbsp;小提示：</span>少侠所处队伍若未能有6位侠士参与采撷，可放弃该次领奖，前往朱重九处重新开启活动。</p>
+						<p>红芳御果可用于苏州（289，222）朱重九处兑换兑换食谱藏宝图，展开美食之旅。集齐4份洛阳锦，在12月31日24时前可前往洛阳（343,270）伊桂处兑换时装：倾国两相欢（永久）。</p>
+					</div>
+				</div>
+			</div>
+			<div class="cont3" id="cont3">
+				<div class="bar">
+					<h2 class="none">台榭宴饮 亲朋共聚</h2>
+					<p class="tips">重阳这一天，不少京城里的人到城外爬山登高，到了这些地方，他们就开始宴饮聚会。<br>《东京梦华录》记载：九月重阳，都人多出郊外登高，如仓王庙、四里桥、愁台、梁王城、砚台、毛驼冈、独乐冈等处宴聚。</p>
+					<div class="hdimg">
+						<div class="hdcont1">
+							<h2 class="timehd">活动时间</h2>
+							<p>10月19日更新后至11月4日24点</p>
+							<h2 class="hdwf">活动玩法</h2>
+							<p>等级达到30级的侠士可前往苏州（289，222）朱重九处兑换食谱藏宝图，寻找失落的食谱。将6个红芳御果交予朱重九，可换取一张食谱藏宝图。根据食谱藏宝图指引，可前往苏州城中找寻遗落的食谱。</p>
+							<h2 class="rewardjl">活动奖励</h2>
+							<p>在指定位置使用食谱藏宝图有几率直接找到<span class="cored">1个初级食谱</span>或<span class="cored">1个中级食谱</span>。</p><p>使用食谱藏宝图时还有机会遇见<span class="cored">食谱达人</span>。食谱达人将会提出关于美食的问题对您进行考验，若您见多识广，正确回答食谱达人提出的问题，可获得<span class="cored">1个高级食谱</span>，若未能回答正确，也可获得<span class="cored">1个中级食谱</span>。</p>
+						</div>
+						<div class="hdcont2">
+							<h2 class="timehd">活动时间</h2>
+							<p>10月19日更新后至11月4日24时</p>
+							<h2 class="hdwf">活动玩法</h2>
+							<p>可通过游戏主界面上方的“重九秋意浓”按钮进入“炊金馔玉”页签，找寻对应的厨师，使用食谱进行烹饪，烹饪后有机会获得“佳肴”，或有机会得到更高等级食谱。初级食谱、中级食谱可使用200厨艺点可升级至更高一级食谱。</p>
+							<p>“佳肴”可呈至“九宴长歌”中，获得丰厚奖励，“饕餮柬”可用于参与“饕餮盛宴”，获取豪华奖励。</p>
+							<p>10月19日0时至11月1日24时期间，您每获得1点活跃值可同时提升1点厨艺点。每日最多可获得500点厨艺点，厨艺点当日不清空，当前上限为7000点。</p>
+						</div>
+						<div class="hdcont3">
+							<h2 class="timehd">活动时间</h2>
+							<p>10月19日更新后至11月4日24时</p>
+							<h2 class="hdwf">活动玩法</h2>
+							<p>等级≥30级的玩家，可使用炊金馔玉活动中所得：佳肴，参加主界面上方重九秋意浓按钮中“九宴长歌”的抽奖活动，依次从和合如意、良辰美景、花好月圆、天利人和、人寿年丰、兰秀菊芳、松鹤瑞年、丰穰秋收、山岳辞青九张桌子中抽取<span class="cored">武器：朱黛重九枝、精金石、桃木打造礼匣·极品、九天玉碎、紫微灵魄</span>等珍贵奖励。</p>
+							<p>奖励被获得后不放回，当上一个宴席传菜结束时，将会自动开启下一个宴席，山岳辞青宴中的奖励全部获得后将会重置，继续传菜可继续获得该宴席奖励。</p>
+							<img src="/act/xtl/chongyang/20200915/pc/img/hdimg1.png" width="383" height="229" alt="九宴长歌" class="hdimg1">
+						</div>
+						<div class="hdcont4">
+							<h2 class="timehd">活动时间</h2>
+							<p>10月19日更新后至11月4日24时</p>
+							<h2 class="hdwf">活动玩法</h2>
+							<p>等级≥30级的玩家，可点击主界面上方“重九秋意浓”按钮进入饕餮盛宴页签，消耗饕餮柬可在饕餮盛宴中品尝玉食珍馐，每品尝一道珍馐可获得一份豪华大礼！已被获得的奖励不会被放回。最多可抽取9次。</p>
+							<h2 class="rewardjl">活动奖励</h2>
+							<p><span class="cored">碎钻星尘·肩（2级）、4级红宝石、珍兽蛋：妙法小僧、4级秘银、4级棉布、真元·紫体符、时装：藤花正晓晴（永久，拾取绑定）、坐骑：天马（30天）、真元·橙体符。</span></p>
+							<img src="/act/xtl/chongyang/20200915/pc/img/hdimg2.png" width="383" height="229" alt="饕餮盛宴" class="hdimg1">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="pop" id="popFail">
+			<div class="poph2">
+				<span>无法领取</span>
+			</div>
+			<p class="pop_inf">累计7块重阳糕，才可领取成功哦！</p>
+			<a href="javascript:;" class="close com" title="点击关闭">x</a>
+		</div>
+		<div class="pop" id="popSuccess">
+			<div class="poph2">
+				<span>领取成功</span>
+			</div>
+			<p class="pop_inf">菩提心经已经发送至大理（172.122）龚彩云处，<br>请尽快登陆游戏领取</p>
+			<a href="javascript:;" class="close com" title="点击关闭">x</a>
+		</div>
+		<div class="pop pop1" id="popComm">
+			<p class="pop_inf pop-comm-msg">活动无效</p>
+			<a href="javascript:;" class="close com" title="点击关闭">x</a>
+		</div>
+		<script src="/act/all/js/jquery-1.8.3.min.js"></script>
+		<script src="/act/all/cdn/join-activity/2.6/join-activity.min.js"></script>
+		<script src="/act/all/js/popout.js"></script>
+		<script src="/act/xtl/chongyang/20200915/pc/js/index.js"></script>
+		<script type="text/javascript">
+(function(){
+	var option = "{	name:'xtl', skins:[0,'white',0]}";
+	var script = document.createElement('script');
+	script.setAttribute('type', 'text/javascript');
+	script.setAttribute('src', '//www.changyou.com/js/cyou_public.js');
+	script.setAttribute('id', 'cyou_public_js');
+	script.setAttribute('options', option);
+	document.getElementsByTagName('head')[0].appendChild(script);	
+})();
+</script>
+		<script type="text/javascript" src="//mon.changyou.com/jquery-a.js"></script>
+<script type="text/javascript">
+
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38593170-5', 'changyou.com');
+  ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1265990366'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1265990366' type='text/javascript'%3E%3C/script%3E"));</script><span style="display:none;" id="cnzz_stat_icon_1265990366"><a href="https://www.cnzz.com/stat/website.php?web_id=1265990366" target="_blank" title="站长统计">站长统计</a></span><script src=" http://s22.cnzz.com/z_stat.php?id=1265990366" type="text/javascript"></script><script src="http://c.cnzz.com/core.php?web_id=1265990366&amp;t=z" charset="utf-8" type="text/javascript"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1486dbdff2a451464c21a0a1bc2130e6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link type="text/css" rel="stylesheet" href="//www.changyou.com/css/common.css">
+	
+
+<div id="cyou_bottom"><table class="cyou_bottom_wraper"><tbody><tr><td class="cyou_bottom_left"><a style="width:115px;background-position:0 -60px;" href="http://www.changyou.com/index.shtml" target="_blank" title="畅游"></a></td><td class="cyou_bottom_right"><a style="width:32px;background-position:0 0;" href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202008090900025" target="_blank" title="经营性网站备案信息"></a></td><td class="cyou_bottom_cont"><p><span class="cp_cn">北京畅游时代数码技术有限公司版权所有 COPYRIGHT © 2020 CHANGYOU.COM LIMITED. </span><a href="http://www.changyou.com/declaration.shtml" target="_blank">法律声明</a><span> | </span><a href="http://www.changyou.com/cu.shtml" target="_blank">联系我们</a><span> | </span><a href="http://gm.changyou.com/html/parental/parentalIndex.html" target="_blank">家长监护</a><span> | </span><a href="http://www.changyou.com/about_us/privacy.shtml" target="_blank">隐私政策</a></p><p><span>京ICP证：</span><a href="http://beian.miit.gov.cn" target="_blank" class="highlight">京ICP备08104911号</a><span> |  京网文：</span><a href="http://i1.cy.com/www/public/nav/3283_002.jpg" target="_blank" class="highlight">[2017]10786-1261号</a><span> |  ISBN号：</span><span class="highlight">978-7-498-00276-1</span></p><p><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010702000007" target="_blank" class="in highlight"><img src="http://i1.cy.com/www/public/nav/ba.png">京公网安备 11010702000007号</a><span> | 文网游备字：</span><span class="highlight">[2017]C-RPG0026</span>号<span> | 新广出审：</span><span class="highlight">[2017]7244</span>号<span> | 全国文化市场举报电话：</span><span class="highlight">12318</span></p><p><span>著作权登记号：</span><span class="highlight">2017SR136499</span></p></td></tr></tbody></table></div><link type="text/css" rel="stylesheet" href="//www.changyou.com/css/common.css"></body></html>
