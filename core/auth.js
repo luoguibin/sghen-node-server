@@ -27,7 +27,7 @@ const newShareToken = function (fromId, shareId, shareModule, shareDuration) {
   }
   const time = Math.floor(Date.now() / 1000)
   return JWT.sign({
-    exp: time + (shareDuration || 3600),
+    exp: time + 7 * 24 *60 * 60, // (shareDuration || 3600),
     iat: time,
     fromId,
     shareId,
