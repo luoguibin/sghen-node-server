@@ -14,7 +14,7 @@ process.on('message', function (o) {
       killSelf()
       break
     case 'create':
-      Manager.createSysMsg(o.data)
+      Manager.createSysMsg(o)
       break
     default:
       break

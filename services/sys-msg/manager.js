@@ -27,7 +27,6 @@ const createSysMsg = function(total, msgType, content) {
       return
     }
     db.exec(`SELECT id FROM user WHERE mobile > ? LIMIT ?, ?`, [START_MOBILE, offset, limit], function (err, results) {
-      console.log(err, results.length);
       if (!!err || !results.length) {
         return
       }
@@ -37,8 +36,6 @@ const createSysMsg = function(total, msgType, content) {
       list.forEach(o => {
         manyValues.push(id++, o.id, msgType, -1, content, nowTime, nowTime)
       });
-      console.log(_manyColumns);
-      console.log(manyValues);
       db.exec(`INSERT INTO sys_msg VALUES ${_manyColumns}`, manyValues, function (err) {
         offset += limit
         loopCreateSysMsg()
@@ -56,7 +53,6 @@ const startCreateSysMsg = function (data) {
   }
 
   db.exec(`SELECT COUNT(*) as total FROM user WHERE mobile > ?`, [START_MOBILE], function (err, results) {
-    console.log(err, results.length);
     if (!!err || !results.length) {
       return
     }
