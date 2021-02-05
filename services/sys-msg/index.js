@@ -20,5 +20,3 @@ process.on('message', function (o) {
       break
   }
 })
-
-Manager.startAutoComment()
