@@ -2,7 +2,7 @@ const childProcess = require('child_process')
 
 // 服务全局变量
 const serviceMap = {}
-const serviceKeys = ['peotry']
+const serviceKeys = ['peotry', 'sys-msg']
 
 /**
  * 启动服务
