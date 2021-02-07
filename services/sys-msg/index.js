@@ -7,8 +7,17 @@ const killSelf = function () {
   process.exit()
 }
 
+const checkAuth = function(level = 0, type = '') {
+  switch (type) {
+    case 'create':
+      return level > 8
+    default:
+      return true
+  }
+}
+
 process.on('message', function (o) {
-  const { type } = o || {}
+  const { type, auth = {} } = o || {}
   switch (type) {
     case 'kill':
       killSelf()

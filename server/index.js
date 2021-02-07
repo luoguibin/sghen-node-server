@@ -65,7 +65,12 @@ gameCenter.init(app)
 
 // 微服务路由
 app.post('/services', function (req, res) {
-  const body = req.body || {}
+  const { auth = {}, body = {} } = req
+  if (!serviceCenter.checkAuth(auth, body)) {
+    res.send(GetResponseData(CONST_NUM.ERROR, '', '权限不够'))
+    return
+  }
+  
   serviceCenter.exec(body.serviceName, body)
   res.send(GetResponseData({ currentTime: timeUtil.getTime() }, '暂支持直接调用，不支持业务数据返回'))
 })

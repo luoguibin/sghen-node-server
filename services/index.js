@@ -35,6 +35,20 @@ const initServiceCenter = function () {
   })
 }
 
+const checkAuth = function(auth = {}, data = {}) {
+  const level = auth.uLevel || 0
+  const {serviceKey = '', type} = data
+
+  const child = serviceMap[serviceKey]
+  if (!child || child.killed) {
+    return true
+  }
+  if (!child.checkAuth) {
+    return true
+  }
+  return child.checkAuth(level, type)
+}
+
 /**
  * 调用服务
  * @param {String} serviceKey
@@ -51,5 +65,6 @@ const execFuc = function (serviceKey, o) {
 
 module.exports = {
   start: initServiceCenter,
+  checkAuth: checkAuth,
   exec: execFuc
 }
