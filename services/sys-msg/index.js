@@ -17,7 +17,7 @@ const checkAuth = function(level = 0, type = '') {
 }
 
 process.on('message', function (o) {
-  const { type, auth = {} } = o || {}
+  const { type } = o || {}
   switch (type) {
     case 'kill':
       killSelf()
