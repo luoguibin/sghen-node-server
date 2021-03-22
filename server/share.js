@@ -3,6 +3,10 @@ const db = require('../core/db')
 const { GetResponseData, CONST_NUM } = require('./base')
 const timeUtil = require('../utils/time')
 
+const SHARE_MODULE_MAP = {
+  resume: true,
+}
+
 const queryData = function (tableName, id, userId) {
   return new Promise(function (resolve, reject) {
     const sql = `SELECT * FROM ${tableName} WHERE id=? AND user_id=?`
@@ -59,6 +63,10 @@ const init = function (app) {
   })
   app.post('/auth/share/create', function (req, res) {
     const { shareId, shareModule, shareDuration } = req.body || {}
+    if (!SHARE_MODULE_MAP[shareModule]) {
+      res.send(GetResponseData(CONST_NUM.ERROR, '禁止分享当前模块'))
+      return
+    }
     const code = auth.newShareToken(req.auth.userId, shareId, shareModule, +shareDuration)
     res.send(GetResponseData({ code, currentTime: timeUtil.getTime(), shareDuration }))
   })
