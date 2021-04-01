@@ -185,7 +185,7 @@ function autoComments () {
   }
 
   commentTimer = setTimeout(() => {
-    if (Object.keys(LoginUserMap).length > 1000) {
+    if (Object.keys(LoginUserMap).length > 30) {
       stopAutoComment()
       setTimeout(() => {
         startAutoComment()
@@ -193,7 +193,7 @@ function autoComments () {
     } else {
       autoComments()
     }
-  }, 10000)
+  }, 5 * 60 * 1000)
 }
 
 /**
