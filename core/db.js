@@ -11,7 +11,7 @@ const exec = function (sql, params, callback) {
       return
     }
 
-    if (params === null || params.length === 0) {
+    if (!params || !params.length) {
       con.query(sql, function (err, results, fields) {
         callback(err, results, fields)
       })

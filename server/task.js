@@ -1,6 +1,7 @@
 const schedule = require('node-schedule')
 const { updateAPIs } = require('./api-center')
 const { checkPeotryPraise } = require('../task/peotry-praise')
+const praiseCensus = require('../services/peotry/praise-census')
 
 const timeUtil = require('../utils/time')
 
@@ -11,6 +12,7 @@ const initScheduleTask = function () {
     console.log('scheduleJob:' + timeUtil.newDate())
     updateAPIs()
     checkPeotryPraise()
+    praiseCensus.startAnalysis()
   })
 }
 

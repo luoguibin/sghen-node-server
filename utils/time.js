@@ -20,8 +20,8 @@ const newDate = function (offset = 8) {
   return d
 }
 
-const getTime = function () {
-  const d = getDateValueMap(newDate())
+const getTime = function (date) {
+  const d = getDateValueMap(date || newDate())
   return `${d.year}-${d.month}-${d.date} ${d.hour}:${d.minute}:${d.second}`
 }
 
