@@ -12,7 +12,7 @@ const initScheduleTask = function () {
     console.log('scheduleJob:' + timeUtil.newDate())
     updateAPIs()
     checkPeotryPraise()
-    praiseCensus.startAnalysis()
+    // praiseCensus.startAnalysis()
   })
 }
 
