@@ -2,6 +2,7 @@ const express = require('express')
 const expressWs = require('express-ws')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const fs = require("fs")
 const apiCenter = require('./api-center')
 const gameCenter = require('./game-center')
 const shareCenter = require('./share')
@@ -9,6 +10,7 @@ const { server: configServer } = require('../config')
 const auth = require('../core/auth')
 const { GetResponseData, CONST_NUM } = require('./base')
 const task = require('./task')
+const arcgisProxy = require("./arcgis-proxy")
 const serviceCenter = require('../services/index')
 const timeUtil = require('../utils/time')
 
@@ -58,6 +60,9 @@ app.get('/', function (req, res) {
   res.send(GetResponseData({ currentTime: timeUtil.getTime() }))
 })
 
+// arcgis代理初始化
+// arcgisProxy(app)
+
 // 自定义路由
 apiCenter.init(app)
 shareCenter.init(app)
@@ -70,7 +75,7 @@ app.post('/services', function (req, res) {
     res.send(GetResponseData(CONST_NUM.ERROR, '', '权限不够'))
     return
   }
-  
+
   serviceCenter.exec(body.serviceName, body)
   res.send(GetResponseData({ currentTime: timeUtil.getTime() }, '暂支持直接调用，不支持业务数据返回'))
 })
